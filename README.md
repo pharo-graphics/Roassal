@@ -84,8 +84,6 @@ You should see a layout editor browser to choose a layout with the current param
 
 Visit the [documentation github page](https://github.com/pharo-graphics/RoassalDocumentation)
 
-A major effort on writing documentation is under way. The wiki pages are yet another source of documentation for Roassal: https://github.com/pharo-graphics/Roassal/wiki
-
 ## Roassal as a dependent application
 If you wish to set a dependency to Roassal in your application, you simply need to add the following in your baseline:
 
