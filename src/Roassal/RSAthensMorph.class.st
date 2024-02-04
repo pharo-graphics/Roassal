@@ -84,8 +84,10 @@ RSAthensMorph >> drawOn: aCanvas [
 		surface hasBeenFreed
 			ifTrue: [ self createSurface ].
 		[ aCanvas
-			translucentFormSet: (FormSet extent: self extent asIntegerPoint depth: 32 forms: { surface asForm })
-			at: self bounds origin asIntegerPoint ]
+			formSet: (FormSet extent: self extent asIntegerPoint depth: 32 forms: { surface asForm })
+			at: self bounds origin asIntegerPoint
+			sourceRect: (0 @ 0 extent: surface extent)
+			rule: Form blendAlphaScaled ]
 		on: Exception
 		do: [ :ex | ex traceCr ]
 	] ensure: [ isDrawing := false ]
