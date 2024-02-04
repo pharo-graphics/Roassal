@@ -23,6 +23,7 @@ Class {
 		'showRectangles',
 		'originMatrix',
 		'surface',
+		'scale',
 		'dirtyRectangle'
 	],
 	#category : 'Roassal-Rendering'
@@ -581,6 +582,32 @@ RSAthensRenderer >> paintFor: shape form: form [
 ]
 
 { #category : #'visiting - helpers' }
+RSAthensRenderer >> pathTransformLoadMatrix [
+
+	athensCanvas pathTransform loadAffineTransform:
+		(AthensAffineTransform new
+			x: matrix x * scale;
+			y: matrix y * scale;
+			sx: matrix sx * scale;
+			sy: matrix sy * scale;
+			shx: matrix shx * scale;
+			shy: matrix shy * scale;
+			yourself)
+]
+
+{ #category : #accessing }
+RSAthensRenderer >> scale [
+
+	^ scale
+]
+
+{ #category : #accessing }
+RSAthensRenderer >> scale: anObject [
+
+	scale := anObject
+]
+
+{ #category : #'visiting - helpers' }
 RSAthensRenderer >> showEncompassingRectangleForLineIfNecessary: line [
 	showRectangles ifFalse: [ ^ self ].
 	self drawShadowRectangle: line encompassingRectangle
@@ -630,7 +657,7 @@ RSAthensRenderer >> visitBorderIfNecessary: shape [
 RSAthensRenderer >> visitBoundingShape: shape [
 	self visitShapeIfNecessary: shape block: [
 		| path paint |
-		athensCanvas pathTransform loadAffineTransform: matrix.
+		self pathTransformLoadMatrix.
 		path := self getOrCreatePathOf: shape.
 		paint := shape paintOn: self.
 		paint ifNotNil: [
@@ -666,6 +693,7 @@ RSAthensRenderer >> visitCanvas: aRSCanvas [
 	athensCanvas setAA: aRSCanvas host antialiasing.
 	aRSCanvas camera accept: self.
 	transformeDirtyRectangle := self transform: dirtyRectangle.
+	athensCanvas pathTransform loadIdentity scaleBy: scale.
 	aRSCanvas shouldClearBackground ifTrue: [
 		self clearRectangle: transformeDirtyRectangle ].
 	modifiedDirtyRectangle := self inverseTransform: transformeDirtyRectangle.
@@ -674,14 +702,14 @@ RSAthensRenderer >> visitCanvas: aRSCanvas [
 	dirtyRectangle := transformeDirtyRectangle.
 	matrix loadIdentity.
 	originMatrix loadIdentity.
-	athensCanvas pathTransform loadIdentity.
+	athensCanvas pathTransform loadIdentity scaleBy: scale.
 	athensCanvas clipBy: transformeDirtyRectangle during: [
 		(aRSCanvas fixedShapes entriesAtRectangle: dirtyRectangle) do: [ :each | each accept: self ] ].
 	aRSCanvas resetDirtyRectangle.
 
 	aRSCanvas shouldShowDirtyRectangle ifFalse: [ ^ self ].
 
-	athensCanvas pathTransform loadIdentity.
+	athensCanvas pathTransform loadIdentity scaleBy: scale.
 	matrix loadIdentity.
 	originMatrix loadIdentity.
 	aRSCanvas camera accept: self.
@@ -718,7 +746,7 @@ RSAthensRenderer >> visitLabel: label [
 		| lbtranslation |
 		lbtranslation := label textExtents translationPoint asFloatPoint.
 		matrix translateBy: lbtranslation.
-		athensCanvas pathTransform loadAffineTransform: matrix.
+		self pathTransformLoadMatrix.
 		label hasBorder
 			ifTrue: [ self drawPathLabel: label ]
 			ifFalse: [ self drawSimpleLabel: label ].
@@ -752,7 +780,7 @@ RSAthensRenderer >> visitLabelDecoratorsIfNecessary: label [
 RSAthensRenderer >> visitLine: line [
 	| path paint |
 	(line intersects: dirtyRectangle) ifFalse: [ ^ self ].
-	athensCanvas pathTransform loadAffineTransform: matrix.
+	self pathTransformLoadMatrix.
 	path := self getOrCreatePathOf: line.
 	paint := line paintOn: self.
 
