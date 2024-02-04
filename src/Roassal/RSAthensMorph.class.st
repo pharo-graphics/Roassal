@@ -73,7 +73,7 @@ RSAthensMorph >> drawOn: aCanvas [
 	isDrawing := true.
 	[
 		self checkSession.
-		self recreateSurfaceIfNecessary: OSWorldRenderer canvasScaleFactor.
+		self recreateSurfaceIfNecessary: aCanvas scale.
 		aCanvas
 			fillRectangle: self bounds
 			fillStyle: roassalCanvas color
