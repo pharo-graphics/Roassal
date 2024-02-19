@@ -8,6 +8,7 @@ Class {
 	#instVars : [
 		'renderer',
 		'session',
+		'surfaceScale',
 		'surface',
 		'isDrawing',
 		'roassalCanvas',
@@ -60,7 +61,7 @@ RSAthensMorph >> checkSession [
 
 { #category : #'surface management' }
 RSAthensMorph >> createSurface [
-	surface := AthensCairoSurface extent: self extent asIntegerPoint.
+	surface := AthensCairoSurface extent: self extent asIntegerPoint * surfaceScale.
 	session := Smalltalk session.
 	roassalCanvas ifNotNil: [ roassalCanvas invalidate ]
 ]
@@ -72,7 +73,7 @@ RSAthensMorph >> drawOn: aCanvas [
 	isDrawing := true.
 	[
 		self checkSession.
-		self recreateSurfaceIfNecessary.
+		self recreateSurfaceIfNecessary: aCanvas scale.
 		aCanvas
 			fillRectangle: self bounds
 			fillStyle: roassalCanvas color
@@ -83,10 +84,10 @@ RSAthensMorph >> drawOn: aCanvas [
 		surface hasBeenFreed
 			ifTrue: [ self createSurface ].
 		[ aCanvas
-			image: surface asForm
+			formSet: (FormSet extent: self extent asIntegerPoint depth: 32 forms: { surface asForm })
 			at: self bounds origin asIntegerPoint
 			sourceRect: (0 @ 0 extent: surface extent)
-			rule: 34 ]
+			rule: Form blendAlphaScaled ]
 		on: Exception
 		do: [ :ex | ex traceCr ]
 	] ensure: [ isDrawing := false ]
@@ -118,7 +119,8 @@ RSAthensMorph >> drawShapes [
 	surface drawDuring: [ :athensCanvas |
 		renderer
 			surface: surface;
-			canvas: athensCanvas.
+			canvas: athensCanvas;
+			scale: surfaceScale.
 		roassalCanvas accept: renderer.
 	]
 ]
@@ -138,7 +140,7 @@ RSAthensMorph >> fullDrawOnAthensCanvas: aCanvas [
 	isDrawing := true.
 	[
 		self checkSession.
-		self recreateSurfaceIfNecessary.
+		self recreateSurfaceIfNecessary: 1.
 
 		aCanvas setPaint: roassalCanvas color.
 		aCanvas drawShape: (bounds translateBy: bounds origin negated).
@@ -217,6 +219,7 @@ RSAthensMorph >> hasFocus [
 RSAthensMorph >> initialize [
 	super initialize.
 	self eventProcessor: RSEventProcessor new.
+	surfaceScale := 0.
 	self createSurface.
 	session := Smalltalk session.
 	isDrawing := false
@@ -293,10 +296,11 @@ RSAthensMorph >> mouseWheel: evt [
 ]
 
 { #category : #'session management' }
-RSAthensMorph >> recreateSurfaceIfNecessary [
+RSAthensMorph >> recreateSurfaceIfNecessary: scale [
 	surface
-		ifNotNil: [ self extent asIntegerPoint ~= surface extent
-				ifTrue: [ self createSurface.
+		ifNotNil: [ (surfaceScale ~= scale or: [ self extent asIntegerPoint * surfaceScale ~= surface extent ])
+				ifTrue: [ surfaceScale := scale.
+					self createSurface.
 					roassalCanvas extent: self extent ] ]
 ]
 
