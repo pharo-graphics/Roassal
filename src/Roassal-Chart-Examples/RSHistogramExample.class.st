@@ -202,6 +202,28 @@ RSHistogramExample >> example10Objects [
 	^ c canvas
 ]
 
+{ #category : 'examples' }
+RSHistogramExample >> example11RelativeYAxisLabels [
+
+	<script: 'self new example11RelativeYAxisLabels open'>
+	| data plot |
+	"The 0 element appears 14 times: 70%"
+	"The 2 element appears 2 times: 10%"
+	"The 10 element appears 4 times: 20%"
+	data := #( 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 2 10 10 10 10 ).
+	
+	plot := RSHistogramPlot new
+		x: data;
+		relativeVerticalTicks;
+		yourself.
+	"Add a label"
+	plot ylabel: 'Percent'.
+
+	plot yTicksRangeMax: 100 numberOfTicks: 6.
+
+	^ plot
+]
+
 { #category : 'computing' }
 RSHistogramExample >> normal: x mean: mean stdDev: std [
 	^ (-0.5 * Float twoPi log - std log -
