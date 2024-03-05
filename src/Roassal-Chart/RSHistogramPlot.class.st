@@ -39,7 +39,8 @@ Class {
 		'x',
 		'bins',
 		'bars',
-		'binningStrategy'
+		'binningStrategy',
+		'isRelativeVerticalTicks'
 	],
 	#category : 'Roassal-Chart-Core',
 	#package : 'Roassal-Chart',
@@ -50,6 +51,13 @@ Class {
 RSHistogramPlot class >> of: aCollection on: aBloc [
 
 	^ self new collectDataOf: aCollection on: aBloc
+]
+
+{ #category : 'accessing' }
+RSHistogramPlot >> absoluteVerticalTicks [
+
+	isRelativeVerticalTicks := false.
+	self verticalTick labelConversion: [ :labelValue | labelValue ]
 ]
 
 { #category : 'accessing' }
@@ -139,8 +147,10 @@ RSHistogramPlot >> definedValuesY [
 
 { #category : 'initialization' }
 RSHistogramPlot >> initialize [
+
 	super initialize.
-	self binningStrategy: RSDefaultBinning new
+	self binningStrategy: RSDefaultBinning new.
+	isRelativeVerticalTicks := false
 ]
 
 { #category : 'accessing' }
@@ -179,6 +189,16 @@ RSHistogramPlot >> numberOfBins: aNumber [
 	self computeXYValues
 ]
 
+{ #category : 'accessing' }
+RSHistogramPlot >> relativeVerticalTicks [
+
+	"Adjust the vertical ticks label to show the relative labels. E.g. instead of showing that a bin appeared 17 times it will show 50%"
+
+	isRelativeVerticalTicks := true.
+	self verticalTick
+		labelConversion: [ :labelValue | (labelValue / x size) * 100 asInteger ]
+]
+
 { #category : 'rendering' }
 RSHistogramPlot >> renderIn: canvas [
 
@@ -208,4 +228,16 @@ RSHistogramPlot >> x [
 RSHistogramPlot >> x: aCollection [
 	x := aCollection sorted.
 	self computeXYValues
+]
+
+{ #category : 'accessing' }
+RSHistogramPlot >> yTicksRangeMax: max numberOfTicks: numberOfTicks [
+
+	| relativeMax |
+	relativeMax := isRelativeVerticalTicks
+		ifFalse: [ max ]
+		ifTrue: [ x size * (max / 100) ].
+
+	self verticalTick ticksData:
+		((0 to: relativeMax count: numberOfTicks) collect: #asInteger)
 ]
