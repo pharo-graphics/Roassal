@@ -14,14 +14,7 @@ Class >> dependentClassesWithOccurences [
 	"We unify a class and its metaclass"
 	self methods , self classSide methods do: [ :m |
 		m literalsDo: [ :l | "We also check if the method is not an extension"
-			(l isVariableBinding and: [ 
-				l value isNotNil and: [ 
-					l value isBehavior and: [
-						m protocolName isNotEmpty and: [
-							m protocolName first ~= $*
-							] ] ] ]) ifTrue: [ cll add: l value ].
-		]
-	].
+			(l isVariableBinding and: [ l value isNotNil and: [ l value isBehavior and: [ m isExtension ] ] ]) ifTrue: [ cll add: l value ] ] ].
 	^ cll asArray
 ]
 
