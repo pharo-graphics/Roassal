@@ -73,7 +73,8 @@ RSAthensMorph >> drawOn: aCanvas [
 	isDrawing := true.
 	[
 		self checkSession.
-		self recreateSurfaceIfNecessary: aCanvas scale.
+		self recreateSurfaceIfNecessary:
+			(SystemVersion current major >= 12 ifTrue: [ aCanvas scale ] ifFalse: [ 1 ]).
 		aCanvas
 			fillRectangle: self bounds
 			fillStyle: roassalCanvas color
@@ -83,11 +84,20 @@ RSAthensMorph >> drawOn: aCanvas [
 
 		surface hasBeenFreed
 			ifTrue: [ self createSurface ].
-		[ aCanvas
-			formSet: (FormSet extent: self extent asIntegerPoint depth: 32 forms: { surface asForm })
-			at: self bounds origin asIntegerPoint
-			sourceRect: (0 @ 0 extent: surface extent)
-			rule: Form blendAlphaScaled ]
+		[ SystemVersion current major >= 12
+			ifTrue: [
+				aCanvas
+					formSet: ((Smalltalk at: #FormSet) extent: self extent asIntegerPoint
+						depth: 32 forms: { surface asForm })
+					at: self bounds origin asIntegerPoint
+					sourceRect: (0 @ 0 extent: surface extent)
+					rule: Form blendAlphaScaled ]
+			ifFalse: [
+				aCanvas
+					image: surface asForm
+					at: self bounds origin asIntegerPoint
+					sourceRect: (0 @ 0 extent: surface extent)
+					rule: 34 ] ]
 		on: Exception
 		do: [ :ex | ex traceCr ]
 	] ensure: [ isDrawing := false ]
