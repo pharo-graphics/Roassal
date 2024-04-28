@@ -1,19 +1,21 @@
 Class {
-	#name : #RSHeatmapTest,
-	#superclass : #RSTest,
+	#name : 'RSHeatmapTest',
+	#superclass : 'RSTest',
 	#instVars : [
 		'builder'
 	],
-	#category : 'Roassal-Global-Tests-DSM'
+	#category : 'Roassal-Global-Tests-DSM',
+	#package : 'Roassal-Global-Tests',
+	#tag : 'DSM'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 RSHeatmapTest >> setUp [
 	super setUp.
 	builder := RSHeatmap new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RSHeatmapTest >> testBuildCreateCompositeShapes [
 	| cell |
 	builder objectsX: #('A' 'B' 'C').
@@ -27,22 +29,22 @@ RSHeatmapTest >> testBuildCreateCompositeShapes [
 	self assert: cell children second class equals: RSLabel
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RSHeatmapTest >> testDataMatrixArrayShouldNotBeEmpty [
 	self should: [builder dataMatrix: {{}. {}. {}}] raise: Error
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RSHeatmapTest >> testDataMatrixShouldHaveTheSameSize [
 	self should: [builder dataMatrix: {{100. 200}. {100. 200. 300}. {100}}] raise: Error
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RSHeatmapTest >> testDataMatrixShouldNotBeEmpty [
 	self should: [builder dataMatrix: #()] raise: Error
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RSHeatmapTest >> testHeatmapContainsAGradientLegend [
 	| legend |
 	builder objectsX: #('A' 'B' 'C').
@@ -56,7 +58,7 @@ RSHeatmapTest >> testHeatmapContainsAGradientLegend [
 	self assert: legend children third isLabel
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 RSHeatmapTest >> testShouldShowCellLabelsIsTrue [
 	self assert: builder shouldShowCellLabels
 ]
