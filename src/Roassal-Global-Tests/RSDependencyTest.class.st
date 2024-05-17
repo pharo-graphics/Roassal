@@ -38,8 +38,8 @@ RSDependencyTest >> hasPackage: aString [
 
 { #category : 'private - accessing' }
 RSDependencyTest >> packageNamed: aSymbol [
-	^ RPackageOrganizer default packageNamed: aSymbol
-		ifAbsent: [ nil ]
+
+	^ self class packageOrganizer packageNamed: aSymbol ifAbsent: [ nil ]
 ]
 
 { #category : 'tests' }
