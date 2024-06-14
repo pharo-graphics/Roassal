@@ -1,6 +1,6 @@
-Extension { #name : #TKTFuture }
+Extension { #name : 'TKTFuture' }
 
-{ #category : #'*Roassal-OpenStreetMap' }
+{ #category : '*Roassal-OpenStreetMap' }
 TKTFuture >> cancelIfNotStarted [
 
 	runner cancelIfNotStarted: self

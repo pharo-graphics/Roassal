@@ -2,8 +2,8 @@
 TODO
 "
 Class {
-	#name : #RSGrapher3D,
-	#superclass : #Object,
+	#name : 'RSGrapher3D',
+	#superclass : 'Object',
 	#instVars : [
 		'extent',
 		'tmat',
@@ -11,10 +11,12 @@ Class {
 		'meshes',
 		'elements'
 	],
-	#category : #'Roassal-Basic3D-TODO'
+	#category : 'Roassal-Basic3D-TODO',
+	#package : 'Roassal-Basic3D',
+	#tag : 'TODO'
 }
 
-{ #category : #public }
+{ #category : 'public' }
 RSGrapher3D class >> sampleData [
 	| r data |
 	r := SharedRandom globalGenerator.

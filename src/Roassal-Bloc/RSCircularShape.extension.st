@@ -1,6 +1,6 @@
-Extension { #name : #RSCircularShape }
+Extension { #name : 'RSCircularShape' }
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSCircularShape >> asBlGeometry [
 
 	^ BlEllipseGeometry new

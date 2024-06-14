@@ -1,6 +1,6 @@
-Extension { #name : #ASRect }
+Extension { #name : 'ASRect' }
 
-{ #category : #'*Roassal-SVG-Importer' }
+{ #category : '*Roassal-SVG-Importer' }
 ASRect >> roassalShape [
 	^ RSBox new
 		fromRectangle: (x@y extent: width@height);

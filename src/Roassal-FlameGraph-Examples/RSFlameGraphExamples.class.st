@@ -1,10 +1,11 @@
 Class {
-	#name : #RSFlameGraphExamples,
-	#superclass : #RSAbstractExamples,
-	#category : #'Roassal-FlameGraph-Examples'
+	#name : 'RSFlameGraphExamples',
+	#superclass : 'RSAbstractExamples',
+	#category : 'Roassal-FlameGraph-Examples',
+	#package : 'Roassal-FlameGraph-Examples'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSFlameGraphExamples >> example01FileSystem [
 	<script: 'self new example01FileSystem open'>
 
@@ -46,7 +47,7 @@ RSFlameGraphExamples >> example01FileSystem [
 		yourself
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSFlameGraphExamples >> example02FileSystem [
 	<script: 'self new example02FileSystem inspect'>
 

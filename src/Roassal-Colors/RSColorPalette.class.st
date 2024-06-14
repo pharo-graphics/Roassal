@@ -19,32 +19,33 @@ Code by Cynthia is under the Apache License 2.0 (https://github.com/axismaps/col
 Roassal is distributed under the MIT License, which is compatible with Apache License 2.0 
 "
 Class {
-	#name : #RSColorPalette,
-	#superclass : #RSObject,
-	#category : #'Roassal-Colors'
+	#name : 'RSColorPalette',
+	#superclass : 'RSObject',
+	#category : 'Roassal-Colors',
+	#package : 'Roassal-Colors'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RSColorPalette class >> diverging [
 	^ RSDivergingColorPalette new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSColorPalette class >> paletteName [
 	^ self subclassResponsibility
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RSColorPalette class >> qualitative [
 	^ RSQualitativeColorPalette new
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RSColorPalette class >> sequential [
 	^ RSSequentialColorPalette new
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RSColorPalette >> fromTriplet: array [
 	^ NSScale ordinal
 		range: (array collect: [ :arr |

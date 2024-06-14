@@ -1,6 +1,6 @@
-Extension { #name : #RSMondrian }
+Extension { #name : 'RSMondrian' }
 
-{ #category : #'*Roassal-Pharo8' }
+{ #category : '*Roassal-Pharo8' }
 RSMondrian >> gtInspectorViewIn: composite [
 
 	<gtInspectorPresentationOrder: -10>

@@ -1,11 +1,11 @@
-Extension { #name : #ASColorPaint }
+Extension { #name : 'ASColorPaint' }
 
-{ #category : #'*Roassal-SVG-Importer' }
+{ #category : '*Roassal-SVG-Importer' }
 ASColorPaint >> rsFill: rsShape with: shape [
 	rsShape paint: (color alpha: (color alpha * shape fill_opacity))
 ]
 
-{ #category : #'*Roassal-SVG-Importer' }
+{ #category : '*Roassal-SVG-Importer' }
 ASColorPaint >> rsStroke: rsShape with: shape [
 	| border |
 	border := RSBorder new

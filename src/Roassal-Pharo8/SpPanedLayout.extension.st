@@ -1,5 +1,5 @@
-Extension { #name : #SpPanedLayout }
+Extension { #name : 'SpPanedLayout' }
 
-{ #category : #'*Roassal-Pharo8' }
+{ #category : '*Roassal-Pharo8' }
 SpPanedLayout >> positionOfSlider: aNumber [
 ]

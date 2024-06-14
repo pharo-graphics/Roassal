@@ -1,6 +1,6 @@
-Extension { #name : #RSCanvas }
+Extension { #name : 'RSCanvas' }
 
-{ #category : #'*Roassal-Pharo8' }
+{ #category : '*Roassal-Pharo8' }
 RSCanvas >> gtInspectorShapesIn: composite [
 	<gtInspectorPresentationOrder: 20>
 	composite table 
@@ -14,7 +14,7 @@ RSCanvas >> gtInspectorShapesIn: composite [
 		column: 'Border' evaluated: [ :each | each border asString ].
 ]
 
-{ #category : #'*Roassal-Pharo8' }
+{ #category : '*Roassal-Pharo8' }
 RSCanvas >> gtInspectorViewIn: composite [
 	<gtInspectorPresentationOrder: -10>
 	composite Roassal

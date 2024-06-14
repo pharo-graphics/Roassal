@@ -1,6 +1,6 @@
-Extension { #name : #RSLayoutBuilder }
+Extension { #name : 'RSLayoutBuilder' }
 
-{ #category : #'*Roassal-GraphViz' }
+{ #category : '*Roassal-GraphViz' }
 RSLayoutBuilder >> graphviz [
 	^ layout := RSGraphvizLayout new
 ]

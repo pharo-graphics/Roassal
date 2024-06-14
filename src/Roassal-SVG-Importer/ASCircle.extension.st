@@ -1,6 +1,6 @@
-Extension { #name : #ASCircle }
+Extension { #name : 'ASCircle' }
 
-{ #category : #'*Roassal-SVG-Importer' }
+{ #category : '*Roassal-SVG-Importer' }
 ASCircle >> roassalShape [
 	^ RSEllipse new
 		radius: (r ifNil: [0]);

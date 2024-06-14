@@ -1,6 +1,6 @@
-Extension { #name : #RSBorder }
+Extension { #name : 'RSBorder' }
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSBorder >> asBlBorder [
 	| builder |
 	builder := BlBorder builder
