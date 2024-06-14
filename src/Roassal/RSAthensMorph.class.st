@@ -3,8 +3,8 @@ A RSAthensMorph is at the interface between Morphic and Roassal.
 I am directly referenced by RSCanvas
 "
 Class {
-	#name : #RSAthensMorph,
-	#superclass : #Morph,
+	#name : 'RSAthensMorph',
+	#superclass : 'Morph',
 	#instVars : [
 		'renderer',
 		'session',
@@ -14,10 +14,12 @@ Class {
 		'roassalCanvas',
 		'eventProcessor'
 	],
-	#category : 'Roassal-Morph'
+	#category : 'Roassal-Morph',
+	#package : 'Roassal',
+	#tag : 'Morph'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAthensMorph class >> example [
 	| morph roassalCanvas |
 	"this class is used by RSCanvas, if you can use RSCanvas insted use directly RSAthensMorph"
@@ -38,18 +40,18 @@ RSAthensMorph class >> example [
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSAthensMorph >> canvas [
 	^ roassalCanvas
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSAthensMorph >> canvas: aRoassalCanvas [
 	roassalCanvas := aRoassalCanvas.
 	eventProcessor roassalCanvas: roassalCanvas
 ]
 
-{ #category : #'session management' }
+{ #category : 'session management' }
 RSAthensMorph >> checkSession [
 	"The mechanism of session is useful in case you have a visualization open, save-and-quit the image, and open the image again.
 	Naturally, you wish to see the visualization again. The session mechanism makes sure that low-level resources that belongs to Cairo are properly recreated"
@@ -59,14 +61,14 @@ RSAthensMorph >> checkSession [
 	self sessionChanged
 ]
 
-{ #category : #'surface management' }
+{ #category : 'surface management' }
 RSAthensMorph >> createSurface [
 	surface := AthensCairoSurface extent: self extent asIntegerPoint * surfaceScale.
 	session := Smalltalk session.
 	roassalCanvas ifNotNil: [ roassalCanvas invalidate ]
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 RSAthensMorph >> drawOn: aCanvas [
 	"Draw the whole visualization"
 	isDrawing ifTrue: [ ^ self ].
@@ -103,12 +105,12 @@ RSAthensMorph >> drawOn: aCanvas [
 	] ensure: [ isDrawing := false ]
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 RSAthensMorph >> drawOnAthensCanvas: aCanvas [
 	self fullDrawOnAthensCanvas: aCanvas
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 RSAthensMorph >> drawOnMockCanvas [
 	"This method is used to trigger all the rendering in a temporary FormCanvas. This method is useful when a bug happens when rendering. Such situation are difficult to debug to the multi-threading and low level graphical primitive. The method #drawOnMockCanvas helps addressing this.
 
@@ -123,7 +125,7 @@ v canvas buildMorph drawOnMockCanvas
 	self drawOn: (FormCanvas extent: self extent)
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 RSAthensMorph >> drawShapes [
 	"The drawing has to be done when a change in the shapes occured or when there is an animation."
 	surface drawDuring: [ :athensCanvas |
@@ -135,7 +137,7 @@ RSAthensMorph >> drawShapes [
 	]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSAthensMorph >> eventProcessor: aRSEventProcessor [
 	eventProcessor := aRSEventProcessor.
 	eventProcessor 
@@ -143,7 +145,7 @@ RSAthensMorph >> eventProcessor: aRSEventProcessor [
 		roassalCanvas: roassalCanvas
 ]
 
-{ #category : #drawing }
+{ #category : 'drawing' }
 RSAthensMorph >> fullDrawOnAthensCanvas: aCanvas [
 
 	isDrawing ifTrue: [ ^ self ].
@@ -168,25 +170,25 @@ RSAthensMorph >> fullDrawOnAthensCanvas: aCanvas [
 		isDrawing := false ]
 ]
 
-{ #category : #'events - processing' }
+{ #category : 'events - processing' }
 RSAthensMorph >> handleKeyDown: anEvent [
 	super handleKeyDown: anEvent.
 	eventProcessor eventKeyDown: anEvent
 ]
 
-{ #category : #'events - processing' }
+{ #category : 'events - processing' }
 RSAthensMorph >> handleKeyUp: anEvent [
 	super handleKeyUp: anEvent.
 	eventProcessor eventKeyUp: anEvent
 ]
 
-{ #category : #'events - processing' }
+{ #category : 'events - processing' }
 RSAthensMorph >> handleMouseMove: anEvent [
 	super handleMouseMove: anEvent.
 	anEvent anyButtonPressed ifFalse: [ eventProcessor eventMouseMove: anEvent ]
 ]
 
-{ #category : #'events - processing' }
+{ #category : 'events - processing' }
 RSAthensMorph >> handleMouseOver: aMorphicEvent [
 	aMorphicEvent wasHandled
 		ifTrue: [ ^ self ]. "Do nothing if it was already handled"
@@ -200,32 +202,32 @@ RSAthensMorph >> handleMouseOver: aMorphicEvent [
 	eventProcessor eventMouseOver: aMorphicEvent.
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RSAthensMorph >> handlesKeyboard: evt [
 	^true
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 RSAthensMorph >> handlesMouseDown: anEvent [
 	^ anEvent wasHandled not
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 RSAthensMorph >> handlesMouseOver: evt [
 	^ true
 ]
 
-{ #category : #'events - processing' }
+{ #category : 'events - processing' }
 RSAthensMorph >> handlesMouseWheel: evt [
 	^true
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 RSAthensMorph >> hasFocus [
 	^ true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RSAthensMorph >> initialize [
 	super initialize.
 	self eventProcessor: RSEventProcessor new.
@@ -235,17 +237,17 @@ RSAthensMorph >> initialize [
 	isDrawing := false
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RSAthensMorph >> isDrawing [
 	^ isDrawing
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSAthensMorph >> lastMousePosition [
 	^ eventProcessor lastMousePosition
 ]
 
-{ #category : #recategorized }
+{ #category : 'recategorized' }
 RSAthensMorph >> layoutChanged [
 	"react on morph resize"
 
@@ -253,7 +255,7 @@ RSAthensMorph >> layoutChanged [
 	self checkSession
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 RSAthensMorph >> mouseDown: evt [
 	self takeKeyboardFocus.
 	eventProcessor hasEvents ifFalse: [
@@ -272,26 +274,26 @@ RSAthensMorph >> mouseDown: evt [
 	evt wasHandled: true.
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 RSAthensMorph >> mouseEnter: evt [
 	evt anyButtonPressed
 		ifFalse: [ eventProcessor eventMouseEnter: evt ].
 	evt wasHandled: true
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 RSAthensMorph >> mouseLeave: evt [
 	evt anyButtonPressed
 		ifFalse: [ eventProcessor eventMouseLeave: evt ].
 	evt wasHandled: true
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 RSAthensMorph >> mouseMove: evt [
 	evt anyButtonPressed ifTrue: [ eventProcessor eventMouseDragging: evt ]
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 RSAthensMorph >> mouseUp: evt [
 	eventProcessor isDragging
 		ifTrue: [ eventProcessor eventMouseDragEnd: evt ]
@@ -299,13 +301,13 @@ RSAthensMorph >> mouseUp: evt [
 	evt wasHandled: true
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 RSAthensMorph >> mouseWheel: evt [
 	eventProcessor eventMouseWheel: evt.
 	evt wasHandled: true
 ]
 
-{ #category : #'session management' }
+{ #category : 'session management' }
 RSAthensMorph >> recreateSurfaceIfNecessary: scale [
 	surface
 		ifNotNil: [ (surfaceScale ~= scale or: [ self extent asIntegerPoint * surfaceScale ~= surface extent ])
@@ -314,29 +316,29 @@ RSAthensMorph >> recreateSurfaceIfNecessary: scale [
 					roassalCanvas extent: self extent ] ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 RSAthensMorph >> release [
 	"This method is useful in case some references of TRMorph cannot be garbage collected, as it may happen with GT."
 	self class instVarNames do: [ :n | self instVarNamed: n put: nil ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSAthensMorph >> renderer [
 	^ renderer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSAthensMorph >> renderer: aRenderer [
 	renderer := aRenderer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSAthensMorph >> roassalCanvas [
 	"Return the Roassal canvas that I have to render"
 	^ self canvas
 ]
 
-{ #category : #'session management' }
+{ #category : 'session management' }
 RSAthensMorph >> sessionChanged [
 
 	roassalCanvas shapes do: [ :s | s sessionChanged ].
@@ -344,50 +346,50 @@ RSAthensMorph >> sessionChanged [
 	roassalCanvas extent: self extent
 ]
 
-{ #category : #signaling }
+{ #category : 'signaling' }
 RSAthensMorph >> signalUpdate [
 	self changed
 ]
 
-{ #category : #signaling }
+{ #category : 'signaling' }
 RSAthensMorph >> step [
 	self wantsSteps ifFalse: [ ^ self ].
 	self changed
 ]
 
-{ #category : #signaling }
+{ #category : 'signaling' }
 RSAthensMorph >> stepTime [
 	"Answer the desired time between steps in milliseconds. This default implementation requests that the 'step' method be called once every second."
 
 	^ 10
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSAthensMorph >> surface [
 	^ surface
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSAthensMorph >> surface: anAthensCairoSurface [
 	surface := anAthensCairoSurface
 ]
 
-{ #category : #'events - processing' }
+{ #category : 'events - processing' }
 RSAthensMorph >> takesKeyboardFocus [
 	^ true
 ]
 
-{ #category : #theme }
+{ #category : 'theme' }
 RSAthensMorph >> themeChanged [
 	roassalCanvas announce: RSThemeChangedEvent new
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 RSAthensMorph >> wantsSteps [
 	^ roassalCanvas hasAnimation
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 RSAthensMorph >> wouldAcceptKeyboardFocusUponTab [
 	"Answer whether the receiver might accept keyboard focus if
 	tab were hit in some container playfield"

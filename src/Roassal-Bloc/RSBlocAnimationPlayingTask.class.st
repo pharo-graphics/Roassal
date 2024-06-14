@@ -2,15 +2,17 @@
 I'm a task that re-enqueues on every frame and does nothing when the Roassal canvas has no animations.
 "
 Class {
-	#name : #RSBlocAnimationPlayingTask,
-	#superclass : #BlTask,
+	#name : 'RSBlocAnimationPlayingTask',
+	#superclass : 'BlTask',
 	#instVars : [
 		'roassalCanvas'
 	],
-	#category : #'Roassal-Bloc-Core'
+	#category : 'Roassal-Bloc-Core',
+	#package : 'Roassal-Bloc',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RSBlocAnimationPlayingTask class >> newWithCanvas: aRSCanvas [
 
 	^ self basicNew
@@ -18,20 +20,20 @@ RSBlocAnimationPlayingTask class >> newWithCanvas: aRSCanvas [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSBlocAnimationPlayingTask >> initializeWithCanvas: aRSCanvas [
 
 	self initialize.
 	roassalCanvas := aRSCanvas
 ]
 
-{ #category : #'private - testing' }
+{ #category : 'private - testing' }
 RSBlocAnimationPlayingTask >> requeueTaskAfterExecution [
 
 	^ true
 ]
 
-{ #category : #'api - running' }
+{ #category : 'api - running' }
 RSBlocAnimationPlayingTask >> run [
 
 	roassalCanvas hasAnimation ifTrue: [ roassalCanvas playAnimations ]

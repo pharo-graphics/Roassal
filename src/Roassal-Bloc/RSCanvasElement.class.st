@@ -1,6 +1,6 @@
 Class {
-	#name : #RSCanvasElement,
-	#superclass : #BlElement,
+	#name : 'RSCanvasElement',
+	#superclass : 'BlElement',
 	#instVars : [
 		'roassalCanvas',
 		'elementListener',
@@ -8,10 +8,12 @@ Class {
 		'fixedElements',
 		'regularElements'
 	],
-	#category : #'Roassal-Bloc-Elements'
+	#category : 'Roassal-Bloc-Elements',
+	#package : 'Roassal-Bloc',
+	#tag : 'Elements'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RSCanvasElement class >> newWithCanvas: aRSCanvas [
 
 	^ self basicNew
@@ -19,7 +21,7 @@ RSCanvasElement class >> newWithCanvas: aRSCanvas [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSCanvasElement >> elementAtShape: aRSShape ifFound: foundBlock ifNone: noneBlock [
 
 	^ self
@@ -29,7 +31,7 @@ RSCanvasElement >> elementAtShape: aRSShape ifFound: foundBlock ifNone: noneBloc
 			ifNone: noneBlock
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RSCanvasElement >> handleRSShapeAddedEvent: evt [
 		
 	| newChild |
@@ -38,7 +40,7 @@ RSCanvasElement >> handleRSShapeAddedEvent: evt [
 	self addChild: newChild
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RSCanvasElement >> handleRSShapeRemovedEvent: evt [
 	
 	self flag: #todo. "Remove handler"
@@ -49,7 +51,7 @@ RSCanvasElement >> handleRSShapeRemovedEvent: evt [
 		ifNone: [ #couldntRemoveShapeElement traceCr ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RSCanvasElement >> initializeWithCanvas: aRSCanvas [
 
 	self initialize.
@@ -77,7 +79,7 @@ RSCanvasElement >> initializeWithCanvas: aRSCanvas [
 		subscribeRoassalToBloc
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RSCanvasElement >> newFixedShapeElements [
 	"Answer a collection of BlElement instances that represent the #fixedShapes. The fixedShapes of a RSCanvas are shapes that are not affected by camera transformations. They are useful for toolbar buttons or legends, for example."
 
@@ -87,7 +89,7 @@ RSCanvasElement >> newFixedShapeElements [
 			  yourself ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 RSCanvasElement >> newRegularShapeElements [
 	"Answer a collection of BlElement instances that represent the regular RSShapes of a RSCanvas. These are the regular shapes, that must be translated and scaled according to the camera."
 
@@ -97,13 +99,13 @@ RSCanvasElement >> newRegularShapeElements [
 			  yourself ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSCanvasElement >> roassalShape [
 
 	^ roassalCanvas
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 RSCanvasElement >> signalUpdate [
 	"Request a redraw on the canvas. 
 	
@@ -131,7 +133,7 @@ RSCanvasElement >> signalUpdate [
 
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RSCanvasElement >> subscribeBlocToRoassal [
 
 	self
@@ -145,7 +147,7 @@ RSCanvasElement >> subscribeBlocToRoassal [
 			do: [ :evt | roassalCanvas extent: evt source extent ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RSCanvasElement >> subscribeRoassalToBloc [
 
 	roassalCanvas
@@ -159,7 +161,7 @@ RSCanvasElement >> subscribeRoassalToBloc [
 		for: self
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 RSCanvasElement >> updateFromRoassalCanvas [
 
 	self background: roassalCanvas color.

@@ -2,25 +2,27 @@
 I am a builder to create UML diagrams in Roassal, see examples
 "
 Class {
-	#name : #RSUMLClassBuilder,
-	#superclass : #RSUMLAbstractBuilder,
+	#name : 'RSUMLClassBuilder',
+	#superclass : 'RSUMLAbstractBuilder',
 	#instVars : [
 		'classes'
 	],
-	#category : #'Roassal-UML-Builder'
+	#category : 'Roassal-UML-Builder',
+	#package : 'Roassal-UML',
+	#tag : 'Builder'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSUMLClassBuilder >> classes [
 	^ classes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSUMLClassBuilder >> classes: aColletionOfClasses [
 	classes := aColletionOfClasses
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RSUMLClassBuilder >> initialize [
 	super initialize.
 	self
@@ -28,12 +30,12 @@ RSUMLClassBuilder >> initialize [
 		renderer: RSBasicUMLClassRenderer new
 ]
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 RSUMLClassBuilder >> objects [
 	^ classes
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 RSUMLClassBuilder >> renderIn: aCanvas [
 	super renderIn: aCanvas.
 	self renderer edgeBuilder

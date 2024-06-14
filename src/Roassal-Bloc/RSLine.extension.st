@@ -1,12 +1,12 @@
-Extension { #name : #RSLine }
+Extension { #name : 'RSLine' }
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSLine >> asBlGeometry [
 	
 	^ BlLineGeometry new
 ]
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSLine >> updateBlGeometry: aBlGeometry [
 
 	aBlGeometry from: self startPoint to: self endPoint

@@ -1,13 +1,15 @@
 Class {
-	#name : #RSLabelElement,
-	#superclass : #BlTextElement,
+	#name : 'RSLabelElement',
+	#superclass : 'BlTextElement',
 	#instVars : [
 		'roassalLabelShape'
 	],
-	#category : #'Roassal-Bloc-Elements'
+	#category : 'Roassal-Bloc-Elements',
+	#package : 'Roassal-Bloc',
+	#tag : 'Elements'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RSLabelElement class >> newWith: aRSLabel [
 
 	^ self basicNew
@@ -15,13 +17,13 @@ RSLabelElement class >> newWith: aRSLabel [
 		yourself
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 RSLabelElement >> addBlocToRoassalEventHandler: aHandler [
 
 	self addEventHandler: aHandler
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RSLabelElement >> initializeWith: aRSLabel [
 
 	self initialize.
@@ -29,13 +31,13 @@ RSLabelElement >> initializeWith: aRSLabel [
 	roassalLabelShape := aRSLabel
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSLabelElement >> roassalShape [
 
 	^ roassalLabelShape
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 RSLabelElement >> updateFromRoassalShape [
 
 	roassalLabelShape updateBlElement: self

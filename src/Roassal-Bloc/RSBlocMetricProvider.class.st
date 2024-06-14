@@ -1,10 +1,12 @@
 Class {
-	#name : #RSBlocMetricProvider,
-	#superclass : #RSMetricsProvider,
-	#category : #'Roassal-Bloc-Core'
+	#name : 'RSBlocMetricProvider',
+	#superclass : 'RSMetricsProvider',
+	#category : 'Roassal-Bloc-Core',
+	#package : 'Roassal-Bloc',
+	#tag : 'Core'
 }
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 RSBlocMetricProvider >> extentsOf: aRSLabel [
 	| paragraph line | 
 	paragraph := BlTextParagraph new

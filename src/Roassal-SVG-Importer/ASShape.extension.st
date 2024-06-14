@@ -1,6 +1,6 @@
-Extension { #name : #ASShape }
+Extension { #name : 'ASShape' }
 
-{ #category : #'*Roassal-SVG-Importer' }
+{ #category : '*Roassal-SVG-Importer' }
 ASShape >> asShape [
 	| shape |
 	self display = 'none' ifTrue: [ ^ nil ].
@@ -15,7 +15,7 @@ ASShape >> asShape [
 	^ shape
 ]
 
-{ #category : #'*Roassal-SVG-Importer' }
+{ #category : '*Roassal-SVG-Importer' }
 ASShape >> roassalShape [
 	^ self subclassResponsibility 
 ]

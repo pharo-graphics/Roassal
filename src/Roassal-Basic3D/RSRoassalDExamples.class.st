@@ -2,12 +2,14 @@
 I have basic examples of Roassald
 "
 Class {
-	#name : #RSRoassalDExamples,
-	#superclass : #Object,
-	#category : #'Roassal-Basic3D-Examples'
+	#name : 'RSRoassalDExamples',
+	#superclass : 'Object',
+	#category : 'Roassal-Basic3D-Examples',
+	#package : 'Roassal-Basic3D',
+	#tag : 'Examples'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSRoassalDExamples >> example01Ball [
 	<script: 'self new example01Ball inspect'>
 	| space mesh list |
@@ -24,7 +26,7 @@ RSRoassalDExamples >> example01Ball [
 	^ space
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSRoassalDExamples >> example02Rect [
 	<script: 'self new example02Rect inspect'>
 	| space mesh |

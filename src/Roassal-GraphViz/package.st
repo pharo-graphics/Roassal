@@ -1,1 +1,1 @@
-Package { #name : #'Roassal-GraphViz' }
+Package { #name : 'Roassal-GraphViz' }

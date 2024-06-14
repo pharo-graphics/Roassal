@@ -1,1 +1,1 @@
-Package { #name : #'Roassal-FlameGraph-Examples' }
+Package { #name : 'Roassal-FlameGraph-Examples' }

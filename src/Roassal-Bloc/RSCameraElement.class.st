@@ -4,15 +4,17 @@ I'm a BlElement that has as children the representation of the regular RSShapes 
 Such regular shapes must be translated and scaled according to the camera.
 "
 Class {
-	#name : #RSCameraElement,
-	#superclass : #BlElement,
+	#name : 'RSCameraElement',
+	#superclass : 'BlElement',
 	#instVars : [
 		'roassalCanvas'
 	],
-	#category : #'Roassal-Bloc-Elements'
+	#category : 'Roassal-Bloc-Elements',
+	#package : 'Roassal-Bloc',
+	#tag : 'Elements'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RSCameraElement class >> newWithCanvas: aRSCanvas [
 
 	^ self basicNew
@@ -20,7 +22,7 @@ RSCameraElement class >> newWithCanvas: aRSCanvas [
 		  yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 RSCameraElement >> initializeWithCanvas: aRSCanvas [
 
 	self initialize.
@@ -36,13 +38,13 @@ RSCameraElement >> initializeWithCanvas: aRSCanvas [
 		updateFromCanvasCamera
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSCameraElement >> roassalShape [
 
 	^ roassalCanvas
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSCameraElement >> updateFromCanvasCamera [
 
 	| aMatrix |
@@ -50,7 +52,7 @@ RSCameraElement >> updateFromCanvasCamera [
 	self transformation: (BlElementAbsoluteTransformation matrix: aMatrix)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSCameraElement >> updateFromRoassalShape [
 	"The difference with the inherited implementation is to update the camera instead of a shape."
 	

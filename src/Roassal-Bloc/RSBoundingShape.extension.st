@@ -1,6 +1,6 @@
-Extension { #name : #RSBoundingShape }
+Extension { #name : 'RSBoundingShape' }
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSBoundingShape >> asBlElement [
 
 	^ (RSShapeElement newWith: self)
@@ -9,13 +9,13 @@ RSBoundingShape >> asBlElement [
 		  yourself
 ]
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSBoundingShape >> asBlGeometry [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSBoundingShape >> blTransformation [
 
 	| anAffineTransformation |
@@ -27,7 +27,7 @@ RSBoundingShape >> blTransformation [
 	^ BlElementLocalTransformation newWith: anAffineTransformation
 ]
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSBoundingShape >> updateBlElement: aShapeElement [
 
 	aShapeElement

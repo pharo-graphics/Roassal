@@ -1,12 +1,12 @@
-Extension { #name : #RSPolyline }
+Extension { #name : 'RSPolyline' }
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSPolyline >> asBlGeometry [
 
 	^ BlPolylineGeometry new
 ]
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSPolyline >> updateBlGeometry: aBlGeometry [
 
 	aBlGeometry vertices: self controlPoints

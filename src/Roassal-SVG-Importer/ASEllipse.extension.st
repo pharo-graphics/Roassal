@@ -1,6 +1,6 @@
-Extension { #name : #ASEllipse }
+Extension { #name : 'ASEllipse' }
 
-{ #category : #'*Roassal-SVG-Importer' }
+{ #category : '*Roassal-SVG-Importer' }
 ASEllipse >> roassalShape [
 	^ RSEllipse new
 		extent: (rx @ ry *2);

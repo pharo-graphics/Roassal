@@ -7,12 +7,14 @@ users should provide a (2 raisedTo: n) number of nodes to compute the tree.
 rembember a balance tree offers a better search experience 
 "
 Class {
-	#name : #RTBulkLoadRTreeCollection,
-	#superclass : #RTreeCollection,
-	#category : 'Roassal-Examples-Basic'
+	#name : 'RTBulkLoadRTreeCollection',
+	#superclass : 'RTreeCollection',
+	#category : 'Roassal-Examples-Basic',
+	#package : 'Roassal-Examples',
+	#tag : 'Basic'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 RTBulkLoadRTreeCollection >> bulkLoad: aCollection [
 	aCollection ifEmpty: [ ^ self ].
 	root := RTNode new.

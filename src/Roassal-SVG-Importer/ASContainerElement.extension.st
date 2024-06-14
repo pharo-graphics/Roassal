@@ -1,6 +1,6 @@
-Extension { #name : #ASContainerElement }
+Extension { #name : 'ASContainerElement' }
 
-{ #category : #'*Roassal-SVG-Importer' }
+{ #category : '*Roassal-SVG-Importer' }
 ASContainerElement >> asShape [
 	| shapes com |
 	shapes := children collect: #asShape thenSelect: #notNil.

@@ -1,6 +1,6 @@
-Extension { #name : #ASStyle }
+Extension { #name : 'ASStyle' }
 
-{ #category : #'*Roassal-SVG-Importer' }
+{ #category : '*Roassal-SVG-Importer' }
 ASStyle >> asShape [
 	^ nil
 ]
