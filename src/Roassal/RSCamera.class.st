@@ -55,7 +55,7 @@ RSCamera class >> example [
 	canvas := RSCanvas new.
 	camera canvas: canvas.
 	canvas camera: camera.
-	^ StInspector openOn: camera
+	^ StInspectorPresenter openOn: camera
 ]
 
 { #category : 'utilities' }
