@@ -2,12 +2,14 @@
 TODO
 "
 Class {
-	#name : #RSSankeyCPController,
-	#superclass : #RSAbstractCPController,
-	#category : #'Roassal-Experimental-Sankey'
+	#name : 'RSSankeyCPController',
+	#superclass : 'RSAbstractCPController',
+	#category : 'Roassal-Experimental-Sankey',
+	#package : 'Roassal-Experimental',
+	#tag : 'Sankey'
 }
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 RSSankeyCPController >> controlPointsFor: aLine [
 
 	| x1 x2 x3 x4 y1 y2 y3 y4 sy ty |

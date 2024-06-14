@@ -2,12 +2,14 @@
 I have examples for animation
 "
 Class {
-	#name : #RSAnimationExamples,
-	#superclass : #RSAbstractExamples,
-	#category : 'Roassal-Examples-Basic'
+	#name : 'RSAnimationExamples',
+	#superclass : 'RSAbstractExamples',
+	#category : 'Roassal-Examples-Basic',
+	#package : 'Roassal-Examples',
+	#tag : 'Basic'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example01BoxWindmill [
 	<script: 'self new example01BoxWindmill open'>
 	| canvas shapes extent points frameCount border |
@@ -44,7 +46,7 @@ RSAnimationExamples >> example01BoxWindmill [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example02BoxesLineCircles [
 
 	<script: 'self new example02BoxesLineCircles open'>
@@ -143,7 +145,7 @@ RSAnimationExamples >> example02BoxesLineCircles [
 	^ c
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example03Atom [
 
 	<script: 'self new example03Atom open'>
@@ -196,7 +198,7 @@ RSAnimationExamples >> example03Atom [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example05ElasticEllipses [
 
 	<script: 'self new example05ElasticEllipses open'>
@@ -254,7 +256,7 @@ RSAnimationExamples >> example05ElasticEllipses [
 	^ canvas
 ]
 
-{ #category : #lines }
+{ #category : 'lines' }
 RSAnimationExamples >> example06LinePatterns [
 
 	<script: 'self new example06LinePatterns open'>
@@ -317,7 +319,7 @@ RSAnimationExamples >> example06LinePatterns [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example07CircleParty [
 	<script: 'self new example07CircleParty open'>
 	| canvas x x2 speed speed2 random shape color |
@@ -368,7 +370,7 @@ RSAnimationExamples >> example07CircleParty [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example08ArcTree [
 
 	<script: 'self new example08ArcTree open'>
@@ -421,7 +423,7 @@ RSAnimationExamples >> example08ArcTree [
 	^ canvas
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example09PerlinParticles [
 
 	<script:
@@ -521,7 +523,7 @@ RSAnimationExamples >> example09PerlinParticles [
 	^ canvas
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example09b [
 
 	<script: 'self new example09b  open setLabel: ''Particles!!! :V'''>
@@ -639,7 +641,7 @@ RSAnimationExamples >> example09b [
 	^ canvas
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example10Arcs [
 
 	<script: 'self new example10Arcs open setLabel: ''Arc animation'''>
@@ -686,7 +688,7 @@ RSAnimationExamples >> example10Arcs [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example11C [
 
 	<script: 'self new example11C open setLabel: ''C!!!'''>
@@ -715,7 +717,7 @@ RSAnimationExamples >> example11C [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example12Sky [
 	<script: 'self new example12Sky open setLabel: ''Star trails'''>
 	<noTest>
@@ -781,7 +783,7 @@ RSAnimationExamples >> example12Sky [
 	^ canvas
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example13ArcNoise [
 
 	<script:
@@ -848,7 +850,7 @@ RSAnimationExamples >> example13ArcNoise [
 	^ canvas
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example14Retina [
 
 	<script: 'self new example14Retina open setLabel: ''Retina (~o.o)~'''>
@@ -927,7 +929,7 @@ RSAnimationExamples >> example14Retina [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example15SpaceDandy [
 
 	<script: 'self new example15SpaceDandy open setLabel: ''Space :D'''>
@@ -1011,7 +1013,7 @@ RSAnimationExamples >> example15SpaceDandy [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example16Gris [
 
 	<script: 'self new example16Gris open setLabel: ''Roassal :V'''>
@@ -1102,7 +1104,7 @@ RSAnimationExamples >> example16Gris [
 	^ c
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example17Flor [
 
 	<script: 'self new example17Flor open setLabel: ''Animation test'''>
@@ -1154,7 +1156,7 @@ RSAnimationExamples >> example17Flor [
 	^ c
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example18Rainbow [
 
 	<script: 'self new example18Rainbow open setLabel: ''Worms'''>
@@ -1248,7 +1250,7 @@ RSAnimationExamples >> example18Rainbow [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example19Stars [
 
 	<script: 'self new example19Stars open setLabel: ''Stars'''>
@@ -1290,7 +1292,7 @@ RSAnimationExamples >> example19Stars [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example20CircleWaves [
 
 	<script: 'self new example20CircleWaves open setLabel: ''Waves'''>
@@ -1334,7 +1336,7 @@ RSAnimationExamples >> example20CircleWaves [
 	^ canvas
 ]
 
-{ #category : #lines }
+{ #category : 'lines' }
 RSAnimationExamples >> example21Lines [
 
 	<script: 'self new example21Lines open setLabel: ''.=.= Lines =.=.'''>
@@ -1415,7 +1417,7 @@ RSAnimationExamples >> example21Lines [
 	^ canvas
 ]
 
-{ #category : #lines }
+{ #category : 'lines' }
 RSAnimationExamples >> example22Lines [
 
 	<script: 'self new example22Lines open setLabel: ''Line patterns'''>
@@ -1478,7 +1480,7 @@ RSAnimationExamples >> example22Lines [
 	^ canvas
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example23PerlinNoise [
 	<script: 'self new example23PerlinNoise open setLabel: ''Perlin Noise'''>
 	"inpired by wangyasai Twitter: @yasai_wang"
@@ -1531,7 +1533,7 @@ RSAnimationExamples >> example23PerlinNoise [
 	^ canvas
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example24RoassalPerlinNoise [
 
 	<script:
@@ -1642,7 +1644,7 @@ RSAnimationExamples >> example24RoassalPerlinNoise [
 "
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example25AnimationCircle [
 
 	<script:
@@ -1718,7 +1720,7 @@ RSAnimationExamples >> example25AnimationCircle [
 	^ canvas
 ]
 
-{ #category : #lines }
+{ #category : 'lines' }
 RSAnimationExamples >> example26Bezier [
 
 	<script: 'self new example26Bezier open setLabel: ''Bezier Test'''>
@@ -1779,7 +1781,7 @@ RSAnimationExamples >> example26Bezier [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example27RSLocate [
 
 	<script:
@@ -1900,7 +1902,7 @@ RSAnimationExamples >> example27RSLocate [
 	^ canvas
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example28AlteredWorld [
 	"base on Gerard Ferrandez source code"
 
@@ -1956,7 +1958,7 @@ RSAnimationExamples >> example28AlteredWorld [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example29Tick [
 
 	<script: 'self new example29Tick open setLabel: ''Can you hear it?'''>
@@ -2019,7 +2021,7 @@ RSAnimationExamples >> example29Tick [
 	^ c
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example30Perlin [
 
 	<script: 'self new example30Perlin open setLabel: ''Perlin :V'''>
@@ -2098,7 +2100,7 @@ RSAnimationExamples >> example30Perlin [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example31RoundRectangles [
 	"example inspired in paper.js"
 
@@ -2141,7 +2143,7 @@ RSAnimationExamples >> example31RoundRectangles [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example32SimpleClock [
 
 	<script:
@@ -2212,7 +2214,7 @@ RSAnimationExamples >> example32SimpleClock [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example33AnimatedLayout [
 
 	<script:
@@ -2275,7 +2277,7 @@ RSAnimationExamples >> example33AnimatedLayout [
 	^ c
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example34ForceLayout [
 	<script: 'self new example34ForceLayout open'>
 	| c classes layout |
@@ -2308,7 +2310,7 @@ RSAnimationExamples >> example34ForceLayout [
 	^ c
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example35Roassal [
 
 	<script: 'self new example35Roassal open'>
@@ -2387,7 +2389,7 @@ RSAnimationExamples >> example35Roassal [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example36Title [
 
 	<script: 'self new example36Title open setLabel: ''Basic Animation'''>
@@ -2515,7 +2517,7 @@ for Pharo 8 and Pharo 9.'.
 	"TODO add animation to line3 and line4, hide and remove with animation these elements"
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example37RectangleForceLayout [
 
 	<script: 'self new example37RectangleForceLayout open'>
@@ -2561,7 +2563,7 @@ RSAnimationExamples >> example37RectangleForceLayout [
 	^ canvas
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example38PerlinRose [
 
 	<script:
@@ -2613,7 +2615,7 @@ RSAnimationExamples >> example38PerlinRose [
 	^ canvas
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example39Duna [
 	<script: 'self new example39Duna  open extent: 1000@700; position: World center - (1000@700 / 2)'>
 	| canvas extent num color noiseScale perlin c particles |
@@ -2650,7 +2652,7 @@ RSAnimationExamples >> example39Duna [
 	^ canvas
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 RSAnimationExamples >> example40Circles [
 
 	<script: 'self new example40Circles open'>
@@ -2730,7 +2732,7 @@ RSAnimationExamples >> example40Circles [
 	^ canvas
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example41River [
 
 	<script:
@@ -2806,7 +2808,7 @@ RSAnimationExamples >> example41River [
 	^ c
 ]
 
-{ #category : #lines }
+{ #category : 'lines' }
 RSAnimationExamples >> example42OneLine [
 	<script: 'self new example42OneLine open extent: 1112@834; setLabel: ''One line'''>
 	| canvas line ang1 ang2 radio x1 y1 x2 y2 |
@@ -2831,7 +2833,7 @@ RSAnimationExamples >> example42OneLine [
 	^ canvas
 ]
 
-{ #category : #lines }
+{ #category : 'lines' }
 RSAnimationExamples >> example43Waves [
 	<script: 'self new example43Waves open
 		position: 0@20;
@@ -2869,7 +2871,7 @@ RSAnimationExamples >> example43Waves [
 	^ canvas
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example44A [
 	<script: 'self new example44A open'>
 	"
@@ -2917,7 +2919,7 @@ c svgExporter export"
 	^ canvas
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example45Beziers [
 
 	<script: 'self new example45Beziers open'>
@@ -3139,7 +3141,7 @@ RSAnimationExamples >> example45Beziers [
 	^ c
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example46Lines [
 
 	<script: 'self new example46Lines open'>
@@ -3232,7 +3234,7 @@ RSAnimationExamples >> example46Lines [
 	^ c
 ]
 
-{ #category : #perlin }
+{ #category : 'perlin' }
 RSAnimationExamples >> example47FractalTree [
 
 	<script: 'self new example47FractalTree open'>
@@ -3284,7 +3286,7 @@ RSAnimationExamples >> example47FractalTree [
 	^ canvas
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSAnimationExamples >> order [
 	^ 1000
 ]

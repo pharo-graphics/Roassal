@@ -2,15 +2,17 @@
 I'm a Bloc element that is associated with a Roassal shape.
 "
 Class {
-	#name : #RSShapeElement,
-	#superclass : #BlElement,
+	#name : 'RSShapeElement',
+	#superclass : 'BlElement',
 	#instVars : [
 		'roassalShape'
 	],
-	#category : #'Roassal-Bloc-Elements'
+	#category : 'Roassal-Bloc-Elements',
+	#package : 'Roassal-Bloc',
+	#tag : 'Elements'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 RSShapeElement class >> newWith: aRSShape [
 
 	^ self basicNew
@@ -18,13 +20,13 @@ RSShapeElement class >> newWith: aRSShape [
 		yourself
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 RSShapeElement >> addBlocToRoassalEventHandler: aHandler [
 
 	self addEventHandler: aHandler
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSShapeElement >> initializeWith: aRSShape [
 
 	self
@@ -34,13 +36,13 @@ RSShapeElement >> initializeWith: aRSShape [
 	roassalShape := aRSShape
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 RSShapeElement >> roassalShape [
 
 	^ roassalShape
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 RSShapeElement >> updateFromRoassalShape [
 
 	roassalShape updateBlElement: self

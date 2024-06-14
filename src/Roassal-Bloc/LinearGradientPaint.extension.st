@@ -1,6 +1,6 @@
-Extension { #name : #LinearGradientPaint }
+Extension { #name : 'LinearGradientPaint' }
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 LinearGradientPaint >> asBlBackground [
 
 	^ (BlLinearGradientPaint new

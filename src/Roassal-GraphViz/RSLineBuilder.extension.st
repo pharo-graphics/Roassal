@@ -1,6 +1,6 @@
-Extension { #name : #RSLineBuilder }
+Extension { #name : 'RSLineBuilder' }
 
-{ #category : #'*Roassal-GraphViz' }
+{ #category : '*Roassal-GraphViz' }
 RSLineBuilder class >> graphviz [
 
 	^ self new: RSGraphvizLine new

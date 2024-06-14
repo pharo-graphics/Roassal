@@ -1,6 +1,6 @@
-Extension { #name : #SpBoxLayout }
+Extension { #name : 'SpBoxLayout' }
 
-{ #category : #'*Roassal-Pharo9' }
+{ #category : '*Roassal-Pharo9' }
 SpBoxLayout >> buildWithSpec: spec [
 	^ Morph new
 ]

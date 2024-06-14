@@ -1,6 +1,6 @@
-Extension { #name : #RSLabel }
+Extension { #name : 'RSLabel' }
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSLabel >> asBlElement [
 
 	^ (RSLabelElement newWith: self)
@@ -8,13 +8,13 @@ RSLabel >> asBlElement [
 		  yourself
 ]
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSLabel >> asBlGeometry [
 
 	^ self shouldNotImplement
 ]
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSLabel >> blRopedText [
 
 	| result |
@@ -34,7 +34,7 @@ RSLabel >> blRopedText [
 	^ result
 ]
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSLabel >> updateBlElement: aShapeElement [
 
 	aShapeElement

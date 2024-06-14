@@ -1,12 +1,12 @@
-Extension { #name : #RSBezier }
+Extension { #name : 'RSBezier' }
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSBezier >> asBlGeometry [
 
 	^ BlBezierCurveGeometry new
 ]
 
-{ #category : #'*Roassal-Bloc' }
+{ #category : '*Roassal-Bloc' }
 RSBezier >> updateBlGeometry: aBlGeometry [
 
 	aBlGeometry controlPoints: self controlPoints

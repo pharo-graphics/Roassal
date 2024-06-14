@@ -5,12 +5,14 @@ digraph G {Hello->World}
 ```
 "
 Class {
-	#name : #RSDigraphDotConverter,
-	#superclass : #RSAbstractDotConverter,
-	#category : #'Roassal-GraphViz-Core'
+	#name : 'RSDigraphDotConverter',
+	#superclass : 'RSAbstractDotConverter',
+	#category : 'Roassal-GraphViz-Core',
+	#package : 'Roassal-GraphViz',
+	#tag : 'Core'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 RSDigraphDotConverter >> writeHeader: aRSGroup [
 	stream
 		<< 'digraph G {'; crlf;
@@ -18,7 +20,7 @@ RSDigraphDotConverter >> writeHeader: aRSGroup [
 		<< 'mincross = 2.0 ; '; crlf
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 RSDigraphDotConverter >> writeLineConnector: aLine [
 	stream << '->'
 ]

@@ -2,12 +2,14 @@
 I'm a Bloc element that is associated with a RSComposite.
 "
 Class {
-	#name : #RSCompositeElement,
-	#superclass : #RSShapeElement,
-	#category : #'Roassal-Bloc-Elements'
+	#name : 'RSCompositeElement',
+	#superclass : 'RSShapeElement',
+	#category : 'Roassal-Bloc-Elements',
+	#package : 'Roassal-Bloc',
+	#tag : 'Elements'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 RSCompositeElement >> addBlocToRoassalEventHandler: aHandler [
 
 	super addBlocToRoassalEventHandler: aHandler.
@@ -16,7 +18,7 @@ RSCompositeElement >> addBlocToRoassalEventHandler: aHandler [
 		each addEventHandler: aHandler ]
 ]
 
-{ #category : #refreshing }
+{ #category : 'refreshing' }
 RSCompositeElement >> updateFromRoassalShape [
 
 	super updateFromRoassalShape.

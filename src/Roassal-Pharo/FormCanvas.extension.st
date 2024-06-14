@@ -1,6 +1,6 @@
-Extension { #name : #FormCanvas }
+Extension { #name : 'FormCanvas' }
 
-{ #category : #'*Roassal-Pharo' }
+{ #category : '*Roassal-Pharo' }
 FormCanvas >> scale [
 
 	^ 1

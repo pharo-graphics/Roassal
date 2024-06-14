@@ -1,1 +1,1 @@
-Package { #name : #'Roassal-Debugger' }
+Package { #name : 'Roassal-Debugger' }

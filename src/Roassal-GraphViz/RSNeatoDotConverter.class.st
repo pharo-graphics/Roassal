@@ -27,17 +27,19 @@ graph ER {
 ```
 "
 Class {
-	#name : #RSNeatoDotConverter,
-	#superclass : #RSAbstractDotConverter,
-	#category : #'Roassal-GraphViz-Core'
+	#name : 'RSNeatoDotConverter',
+	#superclass : 'RSAbstractDotConverter',
+	#category : 'Roassal-GraphViz-Core',
+	#package : 'Roassal-GraphViz',
+	#tag : 'Core'
 }
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 RSNeatoDotConverter >> writeHeader: aRSGroup [
 	stream << 'graph Roassal'; crlf; << '{'; crlf; << 'layout=neato;'; crlf
 ]
 
-{ #category : #visiting }
+{ #category : 'visiting' }
 RSNeatoDotConverter >> writeLineConnector: aLine [
 	stream << '--'
 ]
