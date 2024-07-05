@@ -99,7 +99,7 @@ BaselineOfRoassal >> baselineOfCommon: spec [
 { #category : 'dependencies' }
 BaselineOfRoassal >> bloc: spec [
 	spec baseline: 'Bloc' with: [
-		spec repository: 'github://pharo-graphics/Bloc:dev-1.0/src' ]
+		spec repository: 'github://pharo-graphics/Bloc:master/src' ]
 ]
 
 { #category : 'API-packages' }
