@@ -102,7 +102,7 @@ SpRSTransitionInspectorPresenter >> initializePresenters [
 	togglePauseIcn := #smallPushpin.
 
 	toggleRestartLbl := 'Restart at previous pin'.
-	toggleRestartIcn := #glamorousRestart.
+	toggleRestartIcn := #restart.
 
 	toggle := self newButton
 		          label: togglePauseLbl;
@@ -110,11 +110,11 @@ SpRSTransitionInspectorPresenter >> initializePresenters [
 		          action: [ self toggle ].
 	step := self newButton
 		        label: 'Next frame';
-		        iconName: #glamorousRight;
+		        iconName: #right;
 		        action: [ self step ].
 	debug := self newButton
 		         label: 'Debug step action';
-		         iconName: #glamorousBug;
+		         iconName: #bug;
 		         action: [ self debugAnimationStep ].
 
 	slider := SpMorphPresenter new.
