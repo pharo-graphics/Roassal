@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        smalltalk: [ pharo9, pharo10, pharo11, pharo12 ]
+        smalltalk: [ pharo9, pharo10, pharo11, pharo12, pharo13 ]
         group: [ Full ]
         tests: [ Roassal ]
         os: [ ubuntu-latest ]
