@@ -202,22 +202,23 @@ RSKiviat >> defaultPalette [
 { #category : 'utilities' }
 RSKiviat >> fixLabelPosition: label angle: angle [
 
-	| positions gap |
+	| positions gap roundedUpTo |
+	roundedUpTo := 0.0001.
 	label position: angle cos @ angle sin * radius.
 	gap := self labelGapSize.
 	positions := Dictionary newFromPairs: {
-			             0.
+			             (0 roundUpTo: roundedUpTo).
 			             (0.5 @ 0).
-							 Float halfPi.
+			             (Float halfPi roundUpTo: roundedUpTo).
 			             (0 @ 0.5).
-			             Float halfPi negated.
+			             (Float halfPi negated roundUpTo: roundedUpTo).
 			             (0 @ -0.5).
-			             Float pi.
+			             (Float pi roundUpTo: roundedUpTo).
 			             (-0.5 @ 0).
-			             (Float pi + Float halfPi).
+			             (Float pi + Float halfPi roundUpTo: roundedUpTo).
 			             (0 @ 0.5) }.
 	positions
-		at: angle
+		at: (angle roundUpTo: roundedUpTo)
 		ifPresent: [ :fix |
 		label translateBy: label extent * fix + (gap * fix sign) ]
 		ifAbsent: [
