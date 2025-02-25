@@ -49,7 +49,7 @@ RSStatisticalMeasuresTest >> testGetMeanOfDataset [
 	| statisticalMeasures data |
 	data := #(90 23 22 20 50 80 82 87 15).
 	statisticalMeasures := RSStatisticalMeasures data: data.
-	self assert: (statisticalMeasures mean) closeTo: 52.1111
+	self assert: (statisticalMeasures mean) closeTo: 52.111111111
 ]
 
 { #category : 'tests' }
