@@ -55,7 +55,7 @@ RSWorldMenu class >> menu00RoassalOn: aBuilder [
 	(aBuilder item: #RoassalHelp)
 		parent: #Roassal;
 		label: 'Help';
-		icon: (self iconNamed: #glamorousHelp);
+		icon: (self iconNamed: #help);
 		help: 'Need help?';
 		order: 1.
 	(aBuilder item: #RoassalLoad)

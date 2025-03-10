@@ -323,7 +323,7 @@ RSDSM >> objectsY: someObjects [
 { #category : 'rendering' }
 RSDSM >> renderIn: aCanvas [
 	shapes := self createShapes.
-	aCanvas addAll: shapes.
+	aCanvas addAllShapes: shapes.
 	self layoutShapes: shapes.
 	self addLabelsIfNecessary: aCanvas
 ]

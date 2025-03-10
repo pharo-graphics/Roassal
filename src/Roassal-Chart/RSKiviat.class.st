@@ -144,13 +144,20 @@ RSKiviat >> createEllipseFor: each [
 
 { #category : 'creation' }
 RSKiviat >> createPolygonFor: each [
+	"create the background polygon shape if the variable #shouldUseEllipse equals False.
+	
+	The polygon must be created with a rotation if the number of axis is even."
+	| rotation |
+	rotation := 0.
+	axisNames size even ifTrue: [ rotation := Float pi / axisNames size ].
+
 	^ RSPolygon new
-		noPaint;
-		points: (RSPolygon
-			generateUnitNgonPoints: axisNames size
-		 	rotation: 0)* each;
-		border: self border;
-		yourself
+		  noPaint;
+		  points:
+			  (RSPolygon generateUnitNgonPoints: axisNames size rotation: rotation)
+			  * each;
+		  border: self border;
+		  yourself
 ]
 
 { #category : 'creation' }
@@ -194,24 +201,34 @@ RSKiviat >> defaultPalette [
 
 { #category : 'utilities' }
 RSKiviat >> fixLabelPosition: label angle: angle [
-	| positions gap |
+
+	| positions gap roundedUpTo |
+	roundedUpTo := 0.0001.
 	label position: angle cos @ angle sin * radius.
 	gap := self labelGapSize.
-	positions := Dictionary newFromPairs:
-		{ 0. 0.5@0.
-		Float halfPi negated. 0@ -0.5.
-		Float pi. -0.5@ 0.
-		Float pi + Float halfPi. 0@ 0.5}.
-	positions at: angle
-		ifPresent: [:fix | label translateBy: label extent * fix+ (gap * fix sign) ]
+	positions := Dictionary newFromPairs: {
+			             (0 roundUpTo: roundedUpTo).
+			             (0.5 @ 0).
+			             (Float halfPi roundUpTo: roundedUpTo).
+			             (0 @ 0.5).
+			             (Float halfPi negated roundUpTo: roundedUpTo).
+			             (0 @ -0.5).
+			             (Float pi roundUpTo: roundedUpTo).
+			             (-0.5 @ 0).
+			             (Float pi + Float halfPi roundUpTo: roundedUpTo).
+			             (0 @ 0.5) }.
+	positions
+		at: (angle roundUpTo: roundedUpTo)
+		ifPresent: [ :fix |
+		label translateBy: label extent * fix + (gap * fix sign) ]
 		ifAbsent: [
 			gap := angle cos @ angle sin * gap.
-			(angle between: Float halfPi negated and: 0)
-				ifTrue: [ ^ label translateBy: label baseRectangle bottomLeft negated+gap ].
-			(angle between: 0 and: Float halfPi)
-				ifTrue: [ ^ label translateBy: label baseRectangle topLeft negated+gap ].
-			(angle between: Float halfPi and: Float pi)
-				ifTrue: [ ^ label translateBy: label baseRectangle topRight negated+gap ].
+			(angle between: Float halfPi negated and: 0) ifTrue: [
+				^ label translateBy: label baseRectangle bottomLeft negated + gap ].
+			(angle between: 0 and: Float halfPi) ifTrue: [
+				^ label translateBy: label baseRectangle topLeft negated + gap ].
+			(angle between: Float halfPi and: Float pi) ifTrue: [
+				^ label translateBy: label baseRectangle topRight negated + gap ].
 			label translateBy: label baseRectangle bottomRight negated + gap ]
 ]
 

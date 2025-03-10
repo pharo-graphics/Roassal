@@ -8,10 +8,11 @@
 [![Pharo 10](https://img.shields.io/badge/Pharo-10-%23aac9ff.svg)](https://pharo.org/download)
 [![Pharo 11](https://img.shields.io/badge/Pharo-11-%23aac9ff.svg)](https://pharo.org/download)
 [![Pharo 12](https://img.shields.io/badge/Pharo-12-%23aac9ff.svg)](https://pharo.org/download)
+[![Pharo 13](https://img.shields.io/badge/Pharo-13-%23aac9ff.svg)](https://pharo.org/download)
 
 [*Chat with us on #Roassal*](https://discord.gg/QewZMZa)
 
-Old code is here: https://github.com/ObjectProfile/Roassal
+Old code is here: https://github.com/ObjectProfile/Roassal3
 
 Roassal is an agile visualization engine for [Pharo](http://pharo.org). Roassal was created to enable interactive data visualization, it contains a different groups of shapes an lines that you can use to build your projects, also animations, attach points, events, layouts and a basic chart library.
 Roassal use cairo graphics as backend, in a future will support new backends.
