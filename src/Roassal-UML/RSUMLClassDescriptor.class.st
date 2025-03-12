@@ -54,10 +54,15 @@ RSUMLClassDescriptor >> compositions: aCollection [
 
 { #category : 'public' }
 RSUMLClassDescriptor >> forPharo [
+
 	self
 		classname: #name;
-		instVars: [:cls | cls instVarNames sorted ];
-		methods: [ :cls | cls methods sorted: CompiledMethod sortBlock ];
+		instVars: [ :cls | cls instVarNames sorted ];
+		methods: [ :cls |
+			cls methods sorted: [ :a :b |
+					a methodClass = b methodClass
+						ifTrue: [ a selector <= b selector ]
+						ifFalse: [ a methodClass name <= b methodClass name ] ] ];
 		isAbstract: #isAbstract;
 		superclass: #superclass;
 		methodSelector: #selector;
