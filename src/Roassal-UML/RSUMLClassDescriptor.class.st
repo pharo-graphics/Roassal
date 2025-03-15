@@ -57,7 +57,11 @@ RSUMLClassDescriptor >> forPharo [
 	self
 		classname: #name;
 		instVars: [:cls | cls instVarNames sorted ];
-		methods: [ :cls | cls methods sorted: CompiledMethod sortBlock ];
+		methods: [ :cls | 
+			| col |
+			col := SortedCollection sortBlock: [ :a :b| a selector < b selector ].
+			col addAll: cls methods.
+			col ];
 		isAbstract: #isAbstract;
 		superclass: #superclass;
 		methodSelector: #selector;
