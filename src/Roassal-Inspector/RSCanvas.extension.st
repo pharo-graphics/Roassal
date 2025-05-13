@@ -8,9 +8,10 @@ RSCanvas >> asPresenter [
 ]
 
 { #category : '*Roassal-Inspector' }
-RSCanvas >> inspectorCanvas [
+RSCanvas >> inspectorCanvas: aBuilder [
 	<inspectorPresentationOrder: 90 title: 'Canvas'>
-	^ SpRoassalInspectorPresenter new
+	
+	^ (aBuilder instantiate: SpRoassalInspectorPresenter)
 		canvas: self;
 		yourself
 ]
@@ -52,9 +53,10 @@ RSCanvas >> inspectorContext: aRSContext [
 ]
 
 { #category : '*Roassal-Inspector' }
-RSCanvas >> inspectorShapes [
+RSCanvas >> inspectorShapes: aBuilder [
 	<inspectorPresentationOrder: 100 title: 'Shapes'>
-	^ SpTablePresenter new
+	
+	^ aBuilder newTable
 		items: self shapes, self fixedShapes;
 		addColumn: (SpStringTableColumn
 			title: 'Shape'
