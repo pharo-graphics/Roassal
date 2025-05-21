@@ -1,9 +1,11 @@
 Extension { #name : 'RSComposite' }
 
 { #category : '*Roassal-Inspector' }
-RSComposite >> inspectorShapes [
+RSComposite >> inspectorShapes: aBuilder [
 	<inspectorPresentationOrder: 100 title: 'Children'>
-	^ SpTablePresenter new
+	
+	^ aBuilder newTable
+		addStyle: 'stList';
 		items: self children;
 		addColumn: (SpStringTableColumn
 			title: 'Shape'

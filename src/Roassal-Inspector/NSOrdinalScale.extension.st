@@ -1,9 +1,10 @@
 Extension { #name : 'NSOrdinalScale' }
 
 { #category : '*Roassal-Inspector' }
-NSOrdinalScale >> inspectorColors [
+NSOrdinalScale >> inspectorColors: aBuilder [
 	<inspectorPresentationOrder: 0 title: 'Colors'>
 	| canvas |
+	
 	canvas := RSCanvas new.
 	canvas addAll: (self range collect: [ :color |
 		RSEllipse new
@@ -13,7 +14,7 @@ NSOrdinalScale >> inspectorColors [
 			yourself ]).
 	RSVerticalLineLayout new gapSize: 0; on: canvas nodes.
 	canvas @ RSCanvasController simple.
-	^ SpRoassalInspectorPresenter new
+	^ (aBuilder instantiate: SpRoassalInspectorPresenter)
 		canvas: canvas;
 		yourself
 ]

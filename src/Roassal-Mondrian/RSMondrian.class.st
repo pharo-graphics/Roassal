@@ -93,10 +93,10 @@ RSMondrian >> initialize [
 ]
 
 { #category : 'visualization' }
-RSMondrian >> inspectorVisualization [
+RSMondrian >> inspectorVisualization: aBuilder [
 	<inspectorPresentationOrder: 90 title: 'Mondrian'>
 	self build.
-	^ SpRoassalInspectorPresenter new
+	^ (aBuilder instantiate: SpRoassalInspectorPresenter)
 		canvas: self canvas;
 		yourself
 ]
