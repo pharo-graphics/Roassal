@@ -16,10 +16,10 @@ RSShape >> inspectorShadowFor: padding color: aColor [
 ]
 
 { #category : '*Roassal-Inspector' }
-RSShape >> inspectorShape [
+RSShape >> inspectorShape: aBuilder [
 	<inspectorPresentationOrder: 90 title: 'Shape'>
 
-	^ SpRoassalInspectorPresenter new
+	^ (aBuilder instantiate: SpRoassalInspectorPresenter)
 		canvas: self canvasForInspector;
 		yourself
 ]

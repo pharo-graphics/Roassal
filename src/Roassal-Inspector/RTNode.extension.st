@@ -187,33 +187,37 @@ RTNode >> createBoxesIn: canvas palette: palette level: level [
 ]
 
 { #category : '*Roassal-Inspector' }
-RTNode >> inspectorQueries [
+RTNode >> inspectorQueries: aBuilder [
 	<inspectorPresentationOrder: 4 title: 'Queries'>
-	^ SpRoassalInspectorPresenter new
+	
+	^ (aBuilder instantiate: SpRoassalInspectorPresenter)
 		canvas: self asRSCanvasForQueries;
 		yourself
 ]
 
 { #category : '*Roassal-Inspector' }
-RTNode >> inspectorRectangles [
+RTNode >> inspectorRectangles: aBuilder [
 	<inspectorPresentationOrder: 1 title: 'Rectangles'>
-	^ SpRoassalInspectorPresenter new
+
+	^ (aBuilder instantiate: SpRoassalInspectorPresenter)
 		canvas: self asRSCanvasForRectangles;
 		yourself
 ]
 
 { #category : '*Roassal-Inspector' }
-RTNode >> inspectorTree [
+RTNode >> inspectorTree: aBuilder [
 	<inspectorPresentationOrder: 3 title: 'Tree'>
-	^ SpRoassalInspectorPresenter new
+	
+	^ (aBuilder instantiate: SpRoassalInspectorPresenter)
 		canvas: self asRSCanvasTree;
 		yourself
 ]
 
 { #category : '*Roassal-Inspector' }
-RTNode >> inspectorWithParent [
+RTNode >> inspectorWithParent: aBuilder [
 	<inspectorPresentationOrder: 2 title: 'With Parent'>
-	^ SpRoassalInspectorPresenter new
+
+	^ (aBuilder instantiate: SpRoassalInspectorPresenter)
 		canvas: self asRSCanvasWithParentPath;
 		yourself
 ]

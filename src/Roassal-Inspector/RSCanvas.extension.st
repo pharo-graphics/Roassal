@@ -57,6 +57,7 @@ RSCanvas >> inspectorShapes: aBuilder [
 	<inspectorPresentationOrder: 100 title: 'Shapes'>
 	
 	^ aBuilder newTable
+		addStyle: 'stList';
 		items: self shapes, self fixedShapes;
 		addColumn: (SpStringTableColumn
 			title: 'Shape'

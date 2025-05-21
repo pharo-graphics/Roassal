@@ -1,10 +1,10 @@
 Extension { #name : 'RSTransitionAnimation' }
 
 { #category : '*Roassal-Inspector' }
-RSTransitionAnimation >> inspectorControls [
+RSTransitionAnimation >> inspectorControls: aBuilder [
 
 	<inspectorPresentationOrder: 0 title: 'Controls'>
-	^ SpRSTransitionInspectorPresenter new
+	^ (aBuilder instantiate: SpRSTransitionInspectorPresenter)
 		  animation: self;
 		  yourself
 ]
