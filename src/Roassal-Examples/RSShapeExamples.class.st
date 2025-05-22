@@ -1060,7 +1060,7 @@ RSShapeExamples >> example39RoassalPackages [
 	packagesRegExp := { 'Roassal*' }.
 
 	packages := packagesRegExp flatCollect: [ :regExp |
-	    RPackageOrganizer default packages
+	    self packageOrganizer packages
 	        select: [ :p | regExp match: p packageName ] ].
 
 	canvas := RSCanvas new.
