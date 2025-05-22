@@ -115,7 +115,7 @@ RSLayoutStudio >> generateStringCode [
 { #category : 'initialization' }
 RSLayoutStudio >> initializePresenters [
 	menu := self mainMenu.
-	menu addKeybindingsTo: self.
+	self applyKeyBindingsFromMenu: menu.
 	controls := self newButton.
 	graphTextEditor := self newCode.
 	roassalCanvas := self newRoassal
