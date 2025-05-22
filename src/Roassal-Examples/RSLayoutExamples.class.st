@@ -513,8 +513,9 @@ RSLayoutExamples >> example19AutomaticLayoutWhenWindowIsResized [
 	<script: 'self new example19AutomaticLayoutWhenWindowIsResized open'>
 	| classes shapes c eb |
 	classes := { 'Roassal-Layouts'. 'Roassal' }
-		flatCollect: [:pkgname | (RPackage organizer
-			packageNamed: pkgname) definedClasses ].
+		flatCollect: [:pkgname |
+			(self packageOrganizer packageNamed: pkgname)
+				definedClasses ].
 	shapes := RSGroup new.
 	classes do: [ :cls | shapes add: (RSEllipse new model: cls) ].
 
