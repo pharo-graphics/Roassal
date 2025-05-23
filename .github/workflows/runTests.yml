@@ -4,9 +4,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ Pharo13 ]
+    branches: [ Pharo14 ]
   pull_request:
-    branches: [ Pharo13 ]
+    branches: [ Pharo14 ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        smalltalk: [ pharo13 ]
+        smalltalk: [ pharo14 ]
         group: [ Full ]
         tests: [ Roassal ]
         os: [ ubuntu-latest ]
