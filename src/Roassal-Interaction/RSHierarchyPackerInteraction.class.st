@@ -80,7 +80,7 @@ RSHierarchyPackerInteraction >> initialize [
 		yourself
 ]
 
-{ #category : 'private' }
+{ #category : 'hooks' }
 RSHierarchyPackerInteraction >> onShape: aCanvas [
 	| layout connectedAsGroups connected isolated all |
 	layout := RSTreeLayout new
@@ -91,7 +91,7 @@ RSHierarchyPackerInteraction >> onShape: aCanvas [
 
 	connectedAsGroups := (layout rootNodesFor: connected) collect: [ :e |
 		| group |
-		group :=  OrderedCollection new.
+		group := RSGroup new.
 		self fill: group with: e.
 		group ].
 
