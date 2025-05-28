@@ -43,7 +43,7 @@ jobs:
       # This will delete roassal and numeric scales and it executes the tests again
       - name: Run pharo Tests
         id: tests
-        uses: tinchodias/PharoTestsAction@v2
+        uses: tinchodias/PharoTestsAction@v3
         with:
           removes-repo: 'Roassal, Numeric'
           baseline: 'Roassal'
