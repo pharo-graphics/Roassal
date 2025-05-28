@@ -303,7 +303,7 @@ RSHighlightableExamples >> example08DependendMethods [
 	packagesRegExp := { 'Roassal-Shapes' }.
 
 	packages := packagesRegExp flatCollect: [ :regExp |
-		            self packageOrganizer packages select: [ :p |
+		            self class packageOrganizer packages select: [ :p |
 			            regExp match: p name ] ].
 
 	canvas := RSCanvas new.

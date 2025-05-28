@@ -33,7 +33,7 @@ RSPieChartExample >> initializePresenters [
 
 	| org selectedItem |
 	droplist := self instantiate: SpDropListPresenter.
-	org := self packageOrganizer.
+	org := self class packageOrganizer.
 	packages := (org packageNames
 		             select: [ :s | '*Roassal*' match: s ]
 		             thenCollect: [ :s | org packageNamed: s ]) sorted: [

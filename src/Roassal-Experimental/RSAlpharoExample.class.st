@@ -24,7 +24,7 @@ RSAlpharoExample >> example02Classes [
 
 	<script: 'self new example02Classes'>
 	| b classes |
-	classes := (self packageOrganizer
+	classes := (self class packageOrganizer
 		packageNamed: 'Roassal-Experimental') definedClasses.
 	classes := classes select: [ :cls | cls comment size < 10 ].
 	b := RSAlpharo new.
