@@ -192,7 +192,7 @@ RSShapeExamples >> example25BimetricLineOnLargeExample [
 	packagesRegExp := { 'Calypso*' }.
 
 	packages := packagesRegExp flatCollect: [ :regExp |
-		            RPackageOrganizer default packages select: [ :p |
+		            self class packageOrganizer packages select: [ :p |
 			            regExp match: p name ] ].
 
 	l := RSLabeled new text: [ :model | model name ].
@@ -250,7 +250,7 @@ RSShapeExamples >> example25BisBimetricLineOnLargeExample [
 	packagesRegExp := { 'Calypso*' }.
 
 	packages := packagesRegExp flatCollect: [ :regExp |
-		            RPackageOrganizer default packages select: [ :p |
+		            self class packageOrganizer packages select: [ :p |
 			            regExp match: p name ] ].
 
 	packageElements := packages

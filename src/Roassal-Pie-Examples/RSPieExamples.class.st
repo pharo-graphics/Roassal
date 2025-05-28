@@ -825,7 +825,7 @@ RSPieExamples >> example20AddingRemoving [
 RSPieExamples >> example21ProgressLabel [
 	<script: 'self new example21ProgressLabel open setLabel: ''Roassal packages by linesOfCode'''>
 	| data org pie scale |
-	org := RPackage organizer.
+	org := self class packageOrganizer.
 	data := (org packageNames
 		select: [ :s | 'Roassal*' match: s  ]
 		thenCollect: [ :s | org packageNamed: s ])
@@ -853,7 +853,7 @@ RSPieExamples >> example22RotatedAnimation [
 	<script:
 	'self new example22RotatedAnimation open setLabel: ''Roassal packages by #linesOfCode'''>
 	| data org pie pieLabel animation canvas |
-	org := RPackage organizer.
+	org := self class packageOrganizer.
 	data := (org packageNames
 		         select: [ :s | '*Roassal*' match: s ]
 		         thenCollect: [ :s | org packageNamed: s ]) sorted: [ :a :b |

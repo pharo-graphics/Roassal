@@ -348,7 +348,7 @@ RSDSMExample >> example04Token [
 	<script: 'self new example04Token open'>
 	| packageRegExp packages getKeywordsFromClass rawKeywords top10Keywords dsm |
 	packageRegExp := { 'Roassal-*' }.
-	packages := RPackageOrganizer default packages select: [ :p |
+	packages := self class packageOrganizer packages select: [ :p |
 		            packageRegExp anySatisfy: [ :r | r match: p name ] ].
 
 	getKeywordsFromClass := [ :cls |

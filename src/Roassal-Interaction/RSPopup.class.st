@@ -52,7 +52,7 @@ canvas zoomToFit.
 Anoter example, more complex:
 
 ```
-packages := RPackageOrganizer default packages select: [ :rPak | rPak packageName beginsWith: 'Roassal' ].
+packages := self class packageOrganizer packages select: [ :rPak | rPak packageName beginsWith: 'Roassal' ].
 
 canvas := RSCanvas new.
 shapes := RSBox models: packages.
