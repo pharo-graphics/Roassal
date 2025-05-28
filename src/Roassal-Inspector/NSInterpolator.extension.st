@@ -74,9 +74,10 @@ NSInterpolator >> canvasForInspector [
 ]
 
 { #category : '*Roassal-Inspector' }
-NSInterpolator >> inspectorCanvas [
+NSInterpolator >> inspectorCanvas: aBuilder [
 	<inspectorPresentationOrder: 90 title: 'Canvas'>
-	^ SpRoassalInspectorPresenter new
+
+	^ (aBuilder instantiate: SpRoassalInspectorPresenter)
 		canvas: self canvasForInspector;
 		yourself
 ]

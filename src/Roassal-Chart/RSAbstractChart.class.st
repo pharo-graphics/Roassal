@@ -238,10 +238,11 @@ RSAbstractChart >> initializeRenderOptions [
 ]
 
 { #category : 'inspector' }
-RSAbstractChart >> inspectorCanvas [
+RSAbstractChart >> inspectorCanvas: aBuilder [
 	<inspectorPresentationOrder: 90 title: 'Canvas'>
+	
 	self update.
-	^ SpRoassalInspectorPresenter new
+	^ (aBuilder instantiate: SpRoassalInspectorPresenter)
 		canvas: self canvas;
 		yourself
 ]

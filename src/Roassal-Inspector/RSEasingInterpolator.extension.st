@@ -66,10 +66,11 @@ RSEasingInterpolator class >> canvas [
 ]
 
 { #category : '*Roassal-Inspector' }
-RSEasingInterpolator >> inspectorWithTools: selectors [
+RSEasingInterpolator >> inspectorWithTools: selectors in: aBuilder [
 	| inspectorCanvas presenter numberField tools |
-	inspectorCanvas := super inspectorCanvas.
-	presenter := SpPresenter new.
+	inspectorCanvas := super inspectorCanvas: aBuilder.
+	
+	presenter := aBuilder newPresenter.
 
 	tools := SpBoxLayout newVertical.
 	selectors do: [ :sel |
@@ -87,5 +88,6 @@ RSEasingInterpolator >> inspectorWithTools: selectors [
 		add: inspectorCanvas;
 		add: tools withConstraints: [:c| c width: 100; padding: 5 ];
 		yourself).
+	
 	^ presenter
 ]

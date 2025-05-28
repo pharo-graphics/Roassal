@@ -64,7 +64,8 @@ RSBaselineModel >> inspectionBaselineMap: builder [
 				ifNotNil: [ map baseline: self baselineClass ] ];
 		build;
 		canvas.
-	^ SpRoassalInspectorPresenter new
+
+	^ (builder instantiate: SpRoassalInspectorPresenter)
 		canvas: canvas;
 		yourself
 ]

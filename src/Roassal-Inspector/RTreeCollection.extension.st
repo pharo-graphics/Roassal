@@ -1,9 +1,10 @@
 Extension { #name : 'RTreeCollection' }
 
 { #category : '*Roassal-Inspector' }
-RTreeCollection >> inspectorQueries [
+RTreeCollection >> inspectorQueries: aBuilder [
 	<inspectorPresentationOrder: 4 title: 'Queries'>
-	^ root inspectorQueries
+
+	^ root inspectorQueries: aBuilder
 ]
 
 { #category : '*Roassal-Inspector' }
@@ -12,9 +13,10 @@ RTreeCollection >> inspectorQueriesContext: aContext [
 ]
 
 { #category : '*Roassal-Inspector' }
-RTreeCollection >> inspectorRectangles [
+RTreeCollection >> inspectorRectangles: aBuilder [
 	<inspectorPresentationOrder: 1 title: 'Rectangles'>
-	^ self root inspectorRectangles
+
+	^ self root inspectorRectangles: aBuilder
 ]
 
 { #category : '*Roassal-Inspector' }
@@ -23,9 +25,10 @@ RTreeCollection >> inspectorRectanglesContext: aContext [
 ]
 
 { #category : '*Roassal-Inspector' }
-RTreeCollection >> inspectorTree [
+RTreeCollection >> inspectorTree: aBuilder [
 	<inspectorPresentationOrder: 3 title: 'Tree'>
-	^ root inspectorTree
+
+	^ root inspectorTree: aBuilder
 ]
 
 { #category : '*Roassal-Inspector' }
@@ -34,9 +37,10 @@ RTreeCollection >> inspectorTreeContext: aContext [
 ]
 
 { #category : '*Roassal-Inspector' }
-RTreeCollection >> inspectorWithParent [
+RTreeCollection >> inspectorWithParent: aBuilder [
 	<inspectorPresentationOrder: 2 title: 'With Parent'>
-	^ root inspectorWithParent
+
+	^ root inspectorWithParent: aBuilder
 ]
 
 { #category : '*Roassal-Inspector' }
