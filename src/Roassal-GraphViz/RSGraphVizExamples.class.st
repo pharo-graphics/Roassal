@@ -394,7 +394,7 @@ RSGraphVizExamples >> example08RoassalPackages [
 			yourself ].
 	packagesRegExp := { 'Roassal*' }.
 	packages := packagesRegExp flatCollect: [ :regExp |
-	    RPackageOrganizer default packages
+	    self class packageOrganizer packages
 	        select: [ :p | regExp match: p packageName ] ].
 	canvas addAll: (packages collect: nodeBlock).
 	labeled := RSLabeled new.
