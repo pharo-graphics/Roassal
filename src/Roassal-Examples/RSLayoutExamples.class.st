@@ -367,10 +367,11 @@ RSLayoutExamples >> example13VisualizeQuatree [
 { #category : 'lines' }
 RSLayoutExamples >> example15SimpleClassHierarchy [
 	<script: 'self new example15SimpleClassHierarchy open'>
+
 	| c methods |
 	c := RSCanvas new.
 
-	GoferOperation withAllSubclassesDo: [ :cls |
+	HashedCollection withAllSubclassesDo: [ :cls |
 		| composite label |
 		methods := cls methods collect: [ :m | RSBox new color: Color red; size: 5; model: m; yourself ] as: RSGroup.
 		methods @ (RSPopup text: #selector).

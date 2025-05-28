@@ -277,7 +277,7 @@ RSLegendExamples >> example12OnPopup [
 	<script: 'self new example12OnPopup open'>
 	| canvas shapes interaction popup |
 	canvas := RSCanvas new.
-	shapes := GoferOperation withAllSubclasses collect: [ :cls |
+	shapes := HashedCollection withAllSubclasses collect: [ :cls |
 		| boxes |
 		boxes := RSBox models: cls methods forEach: [:box :met |
 			box size: met linesOfCode*0.5+2; color: Color lightGray
