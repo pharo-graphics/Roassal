@@ -24,18 +24,20 @@ Class {
 
 { #category : 'examples' }
 RSObjectWithProperty class >> exampleCanvas [
+
 	| c |
 	c := RSCanvas new.
 	c propertyAt: #rick put: #morty.
-	^ StInspectorPresenter openOn: c properties
+	^ c properties inspector
 ]
 
 { #category : 'examples' }
 RSObjectWithProperty class >> exampleShapeBox [
+
 	| shape |
 	shape := RSBox new.
 	shape propertyAt: #randy put: #stan.
-	^ StInspectorPresenter openOn: shape properties
+	^ shape properties inspector
 ]
 
 { #category : 'interactions' }

@@ -51,23 +51,26 @@ Class {
 
 { #category : 'examples' }
 RSShape class >> exampleBox [
+
 	| box |
 	box := RSBox new.
-	^ StInspectorPresenter openOn: box
+	^ box inspector
 ]
 
 { #category : 'examples' }
 RSShape class >> exampleLabel [
+
 	| lb |
 	lb := RSLabel text: 'Roassal'.
-	^ StInspectorPresenter openOn: lb
+	^ lb inspector
 ]
 
 { #category : 'examples' }
 RSShape class >> exampleLine [
+
 	| l |
 	l := RSLine new controlPoints: {10@10. 20@20}.
-	^ StInspectorPresenter openOn: l
+	^ l inspector
 ]
 
 { #category : 'accessing' }
