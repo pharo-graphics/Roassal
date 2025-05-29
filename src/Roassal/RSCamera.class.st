@@ -49,13 +49,14 @@ Class {
 
 { #category : 'examples' }
 RSCamera class >> example [
+
 	| camera canvas |
 	camera := self new.
 	camera position: 100@100.
 	canvas := RSCanvas new.
 	camera canvas: canvas.
 	canvas camera: camera.
-	^ StInspectorPresenter openOn: camera
+	^ camera inspector
 ]
 
 { #category : 'utilities' }

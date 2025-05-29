@@ -2,12 +2,11 @@ Extension { #name : 'RSBezier' }
 
 { #category : '*Roassal-Examples' }
 RSBezier class >> exampleBezier [
-	<sampleInstance>
 
 	| bezier |
 	bezier := self new.
 	bezier controlPoints: {0@0. 100@ -50.  0@ -100. 50@ 0}.
-	^ bezier
+	^ bezier inspector
 ]
 
 { #category : '*Roassal-Examples' }
