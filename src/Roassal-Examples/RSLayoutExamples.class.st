@@ -367,10 +367,11 @@ RSLayoutExamples >> example13VisualizeQuatree [
 { #category : 'lines' }
 RSLayoutExamples >> example15SimpleClassHierarchy [
 	<script: 'self new example15SimpleClassHierarchy open'>
+
 	| c methods |
 	c := RSCanvas new.
 
-	GoferOperation withAllSubclassesDo: [ :cls |
+	HashedCollection withAllSubclassesDo: [ :cls |
 		| composite label |
 		methods := cls methods collect: [ :m | RSBox new color: Color red; size: 5; model: m; yourself ] as: RSGroup.
 		methods @ (RSPopup text: #selector).
@@ -513,8 +514,9 @@ RSLayoutExamples >> example19AutomaticLayoutWhenWindowIsResized [
 	<script: 'self new example19AutomaticLayoutWhenWindowIsResized open'>
 	| classes shapes c eb |
 	classes := { 'Roassal-Layouts'. 'Roassal' }
-		flatCollect: [:pkgname | (RPackage organizer
-			packageNamed: pkgname) definedClasses ].
+		flatCollect: [:pkgname |
+			(self class packageOrganizer packageNamed: pkgname)
+				definedClasses ].
 	shapes := RSGroup new.
 	classes do: [ :cls | shapes add: (RSEllipse new model: cls) ].
 

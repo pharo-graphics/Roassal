@@ -117,7 +117,7 @@ RSUMLExamples >> example08HierarchyPacker [
 	| builder classes |
 	builder := RSUMLClassBuilder new.
 	classes := { 'Roassal-Layouts'. 'Roassal' }
-		flatCollect: [:pkgname | (RPackage organizer
+		flatCollect: [:pkgname | (self class packageOrganizer
 			packageNamed: pkgname) definedClasses ].
 	builder classes: classes.
 	builder renderer: RSTorchUMLClassRenderer new.

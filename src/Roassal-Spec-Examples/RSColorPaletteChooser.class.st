@@ -284,8 +284,12 @@ RSColorPaletteChooser >> palettes [
 	| colorPalette |
 	colorPalette := currentPalette value: RSColorPalette.
 
-	^ (colorPalette class methods sorted: CompiledMethod sortBlock)
-		collect: [ :met | self paletteFor: (met selector value: colorPalette) method: met ]
+	^ (colorPalette class methods
+		sorted: [ :a :b|
+			a methodClass = b methodClass
+				ifTrue: [ a selector <= b selector ]
+				ifFalse: [ a methodClass name <= b methodClass name ]])
+		collect: [ :each | self paletteFor: (each selector value: colorPalette) method: each ]
 ]
 
 { #category : 'utilities' }

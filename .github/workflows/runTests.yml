@@ -2,15 +2,12 @@ name: CI
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
+  # Triggers the workflow on push or pull request events
   push:
-    branches: [ Pharo13 ]
   pull_request:
-    branches: [ Pharo13 ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        smalltalk: [ pharo13 ]
+        smalltalk: [ pharo12, pharo13, pharo14 ]
         group: [ Full ]
         tests: [ Roassal ]
         os: [ ubuntu-latest ]
@@ -30,7 +27,7 @@ jobs:
     steps:
         
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.12.0
+        uses: styfle/cancel-workflow-action@0.12.1
         with:
           access_token: ${{ github.token }}
 
@@ -43,7 +40,7 @@ jobs:
       # This will delete roassal and numeric scales and it executes the tests again
       - name: Run pharo Tests
         id: tests
-        uses: akevalion/PharoTestsAction@v1
+        uses: tinchodias/PharoTestsAction@v3
         with:
           removes-repo: 'Roassal, Numeric'
           baseline: 'Roassal'
