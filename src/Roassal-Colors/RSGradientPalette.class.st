@@ -144,9 +144,10 @@ RSGradientPalette class >> redSalvation [
 { #category : 'view' }
 RSGradientPalette class >> roassalCanvas [
 	<example>
+
 	| canvas gradients |
 	canvas := RSCanvas new.
-	gradients := self class methods select: [ :met | met category = #gradients ].
+	gradients := self class methodsInProtocol: #gradients.
 	canvas addAll: (gradients collect: [ :met |
 		| paint |
 		paint := met selector value: self.
@@ -159,7 +160,7 @@ RSGradientPalette class >> roassalCanvas [
 		]).
 	RSGridLayout on: canvas nodes.
 	canvas @ RSCanvasController.
-	canvas open
+	^ canvas open
 ]
 
 { #category : 'gradients' }
