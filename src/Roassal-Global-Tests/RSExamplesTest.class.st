@@ -6,17 +6,18 @@ Class {
 	#tag : 'Examples'
 }
 
-{ #category : 'tests' }
-RSExamplesTest class >> validMethods: methods [
-	| result |
-	result := methods select: [ :met |
-		(met selector beginsWith: 'example') and: [
-			(met hasPragmaNamed: 'noTest') not ] ].
+{ #category : 'private' }
+RSExamplesTest >> exampleMethodsFrom: methods [
 
-	^ result
+	^ (methods
+			reject: [ :each | each hasPragmaNamed: 'noTest' ])
+			select: [ :each | 
+				(each selector beginsWith: 'example')
+					or: [ (each hasPragmaNamed: 'example')
+					or: [ (each hasPragmaNamed: 'sampleInstance') ] ] ]
 ]
 
-{ #category : 'tests' }
+{ #category : 'private' }
 RSExamplesTest >> executeTest: method in: exampleClass [
 	| res |
 	res := exampleClass perform: method selector.
@@ -27,9 +28,10 @@ RSExamplesTest >> executeTest: method in: exampleClass [
 
 { #category : 'tests' }
 RSExamplesTest >> testClassSideExamples [
+
 	| methods errors noSystemWindow |
 	self timeLimit: 10 minutes.
-	methods := self class validMethods: (RSObject withAllSubclasses
+	methods := self exampleMethodsFrom: (RSObject withAllSubclasses
 		flatCollect: [:cls | cls class methods ]).
 	errors := OrderedCollection new.
 	noSystemWindow := OrderedCollection new.
@@ -51,15 +53,17 @@ RSExamplesTest >> testClassSideExamples [
 { #category : 'tests' }
 RSExamplesTest >> testExamples [
 	"This tests execute all the examples of Roassal. Introspectively, it looks for subclasses of RSAbstractExamples"
+
 	| clazz withErrors sameResult |
 	self timeLimit: 10 minutes.
 	clazz := Smalltalk at: #RSAbstractExamples ifAbsent: [ ^ self ].
 	withErrors := OrderedCollection new.
 	sameResult := OrderedCollection new.
+
 	clazz subclasses do: [ :cls |
 		| inst methods |
 		inst := cls new.
-		methods := self class validMethods: cls methods.
+		methods := self exampleMethodsFrom: cls methods.
 
 		methods
 			do: [ :met | | res |
