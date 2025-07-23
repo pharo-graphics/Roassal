@@ -26,7 +26,7 @@ RSWorldMenu class >> discordPNGByteArray [
 RSWorldMenu class >> loadExporters [
 	Metacello new
 		baseline: 'RoassalExporters';
-		repository: 'github://pharo-graphics/RoassalExporters:Pharo13/src';
+		repository: 'github://pharo-graphics/RoassalExporters:v1.02';
 		onConflictUseIncoming;
 		load
 ]
@@ -38,7 +38,7 @@ RSWorldMenu class >> loadFullVersion [
 		ifFalse: [ ^ self ].
 	[Metacello new
 		baseline: 'Roassal';
-		repository: 'github://pharo-graphics/Roassal:Pharo13/src';
+		repository: 'github://pharo-graphics/Roassal';
 		load: 'Full' ] on: MCMergeOrLoadWarning do: [:warning | warning load ].
 	self loadExporters
 ]
