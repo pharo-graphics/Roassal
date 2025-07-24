@@ -23,7 +23,7 @@ RSAbstractLine >> updateBlElement: aBlElement [
 	self updateBlGeometry: aBlElement geometry.
 
 	aBlElement
-		size: self encompassingRectangle extent;
+		extent: self encompassingRectangle extent;
 		border: self blBorder;
 		background: self blPaint
 ]
