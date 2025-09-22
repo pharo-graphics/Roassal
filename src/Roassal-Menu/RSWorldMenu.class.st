@@ -34,12 +34,15 @@ RSWorldMenu class >> loadExporters [
 { #category : 'loading' }
 RSWorldMenu class >> loadFullVersion [
 	"TODO do not discard changes"
-	(UIManager default confirm: 'Do you want to load the last version of Roassal?')
-		ifFalse: [ ^ self ].
-	[Metacello new
-		baseline: 'Roassal';
-		repository: 'github://pharo-graphics/Roassal';
-		load: 'Full' ] on: MCMergeOrLoadWarning do: [:warning | warning load ].
+
+	(UIManager default confirm: 'Do you want to load the last version of Roassal?') ifFalse: [ ^ self ].
+	[
+		Metacello new
+			baseline: 'Roassal';
+			repository: 'github://pharo-graphics/Roassal:Pharo' , SystemVersion current major asString;
+			load: 'Full' ]
+		on: MCMergeOrLoadWarning
+		do: [ :warning | warning load ].
 	self loadExporters
 ]
 
