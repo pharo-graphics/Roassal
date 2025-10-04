@@ -133,8 +133,7 @@ RSAthensMorph >> drawShapes [
 	surface drawDuring: [ :athensCanvas |
 		renderer
 			surface: surface;
-			canvas: athensCanvas;
-			scale: 1.
+			canvas: athensCanvas.
 		roassalCanvas accept: renderer.
 	]
 ]
