@@ -64,6 +64,8 @@ RSAthensMorph >> checkSession [
 { #category : 'surface management' }
 RSAthensMorph >> createSurface [
 	surface := AthensCairoSurface extent: self extent asIntegerPoint * surfaceScale.
+	surfaceScale > 0 ifTrue: [
+		surface deviceScaleX: surfaceScale y: surfaceScale ].
 	session := Smalltalk session.
 	roassalCanvas ifNotNil: [ roassalCanvas invalidate ]
 ]
@@ -132,7 +134,7 @@ RSAthensMorph >> drawShapes [
 		renderer
 			surface: surface;
 			canvas: athensCanvas;
-			scale: surfaceScale.
+			scale: 1.
 		roassalCanvas accept: renderer.
 	]
 ]
