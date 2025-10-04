@@ -92,7 +92,7 @@ RSAthensMorph >> drawOn: aCanvas [
 					formSet: ((Smalltalk at: #FormSet) extent: self extent asIntegerPoint
 						depth: 32 forms: { surface asForm })
 					at: self bounds origin asIntegerPoint
-					sourceRect: (0 @ 0 extent: surface extent)
+					sourceRect: (0 @ 0 extent: self extent asIntegerPoint)
 					rule: Form blendAlphaScaled ]
 			ifFalse: [
 				aCanvas
