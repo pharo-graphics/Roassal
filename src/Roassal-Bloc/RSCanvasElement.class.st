@@ -139,12 +139,9 @@ RSCanvasElement >> subscribeBlocToRoassal [
 	self
 		addEventHandler: elementListener;
 		addEventHandlerOn: BlElementExtentChangedEvent
-			do: [ :evt |
-				roassalCanvas extent: evt source extent.
-				"RSCanvas extent change does not trigger signalUpdate"
-				self updateFromRoassalCanvas ];
+			do: [ :evt | self updateRSCanvasExtent ];
 		addEventHandlerOn: BlElementAddedToSceneGraphEvent 
-			do: [ :evt | roassalCanvas extent: evt source extent ]
+			do: [ :evt | self updateRSCanvasExtent ]
 ]
 
 { #category : 'initialization' }
@@ -167,4 +164,13 @@ RSCanvasElement >> updateFromRoassalCanvas [
 	self background: roassalCanvas color.
 
 	self childrenDo: [ :each | each updateFromRoassalShape ]
+]
+
+{ #category : 'refreshing' }
+RSCanvasElement >> updateRSCanvasExtent [
+	"Note: RSCanvas extent change does not trigger signalUpdate"
+
+	self extent isZero ifFalse: [
+			roassalCanvas extent: self extent.
+			self updateFromRoassalCanvas ]
 ]
