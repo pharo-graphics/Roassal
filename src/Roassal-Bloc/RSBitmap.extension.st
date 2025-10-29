@@ -7,7 +7,7 @@ RSBitmap >> asBlGeometry [
 ]
 
 { #category : '*Roassal-Bloc' }
-RSBitmap >> blPaint [
+RSBitmap >> blBackground [
 
 	^ BlImageBackground image: form
 ]
