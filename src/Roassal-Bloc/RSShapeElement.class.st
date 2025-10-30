@@ -36,6 +36,17 @@ RSShapeElement >> initializeWith: aRSShape [
 	roassalShape := aRSShape
 ]
 
+{ #category : 'printing' }
+RSShapeElement >> printOn: aStream [
+	"Generate a string representation of the receiver based on its instance variables."
+
+	super printOn: aStream.
+	aStream
+		nextPutAll: ' (';
+		print: roassalShape;
+		nextPut: $)
+]
+
 { #category : 'accessing' }
 RSShapeElement >> roassalShape [
 
