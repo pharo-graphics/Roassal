@@ -31,8 +31,8 @@ RSShapeElement >> initializeWith: aRSShape [
 
 	self
 		initialize;
-		clipChildren: false.
-	
+		beOutskirtsCentered.
+
 	roassalShape := aRSShape
 ]
 
