@@ -5,7 +5,6 @@ RSAbstractLine >> asBlElement [
 
 	^ (RSShapeElement newWith: self)
 		  geometry: self asBlGeometry;
-		  beOutskirtsCentered;
 		  updateFromRoassalShape;
 		  yourself
 ]
