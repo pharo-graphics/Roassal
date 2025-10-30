@@ -37,7 +37,12 @@ RSBlocHost >> createSpace [
 		extent: canvas extent;
 		yourself.
 
-	space root addChild: self canvasElement
+	space root addChild:
+		(self canvasElement
+			constraintsDo: [ :c |
+				c horizontal matchParent.
+				c vertical matchParent ];
+			yourself)
 ]
 
 { #category : 'accessing' }
