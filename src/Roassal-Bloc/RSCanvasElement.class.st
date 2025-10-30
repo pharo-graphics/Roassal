@@ -4,9 +4,7 @@ Class {
 	#instVars : [
 		'roassalCanvas',
 		'elementListener',
-		'cameraElement',
-		'fixedElements',
-		'regularElements'
+		'cameraElement'
 	],
 	#category : 'Roassal-Bloc-Elements',
 	#package : 'Roassal-Bloc',
@@ -19,6 +17,40 @@ RSCanvasElement class >> newWithCanvas: aRSCanvas [
 	^ self basicNew
 		  initializeWithCanvas: aRSCanvas;
 		  yourself
+]
+
+{ #category : 'private' }
+RSCanvasElement >> addFixedShapeElementFor: aRSShape [
+
+	self addChild:
+		(aRSShape asBlElement
+			addBlocToRoassalEventHandler: elementListener;
+			yourself)
+]
+
+{ #category : 'private' }
+RSCanvasElement >> addFixedShapeElements [
+	"Add BlElement instances that represent the #fixedShapes. The fixedShapes of a RSCanvas are shapes that are not affected by camera transformations. They are useful for toolbar buttons or legends, for example."
+
+	roassalCanvas fixedShapes do: [ :each |
+		self addFixedShapeElementFor: each ]
+]
+
+{ #category : 'private' }
+RSCanvasElement >> addRegularShapeElementFor: aRSShape [
+
+	cameraElement addChild:
+		(aRSShape asBlElement
+			addBlocToRoassalEventHandler: elementListener;
+			yourself)
+]
+
+{ #category : 'private' }
+RSCanvasElement >> addRegularShapeElements [
+	"Add to cameraElement BlElement instances that represent the regular RSShapes of a RSCanvas. These are the regular shapes, that must be translated and scaled according to the camera."
+
+	roassalCanvas shapes do: [ :each |
+		self addRegularShapeElementFor: each ]
 ]
 
 { #category : 'accessing' }
@@ -34,10 +66,7 @@ RSCanvasElement >> elementAtShape: aRSShape ifFound: foundBlock ifNone: noneBloc
 { #category : 'private' }
 RSCanvasElement >> handleRSShapeAddedEvent: evt [
 		
-	| newChild |
-	newChild := evt shape asBlElement.
-	newChild addBlocToRoassalEventHandler: elementListener.
-	self addChild: newChild
+	self addRegularShapeElementFor: evt shape
 ]
 
 { #category : 'private' }
@@ -61,42 +90,17 @@ RSCanvasElement >> initializeWithCanvas: aRSCanvas [
 	elementListener := RSBlocEventListener newForCanvas: aRSCanvas.
 	cameraElement := RSCameraElement newWithCanvas: aRSCanvas.
 
-	fixedElements := self newFixedShapeElements.
-	self addChildren: fixedElements.
-
-	regularElements := self newRegularShapeElements.
-	cameraElement addChildren: regularElements.
+	self addFixedShapeElements.
+	self addRegularShapeElements.
 	
 	self
-		constraintsDo: [ :c |
-			c horizontal matchParent.
-			c vertical matchParent ];
+		extent: aRSCanvas extent;
 		enqueueTask: (RSBlocAnimationPlayingTask newWithCanvas: aRSCanvas);
 		addChild: cameraElement.
 	
 	self
 		subscribeBlocToRoassal;
 		subscribeRoassalToBloc
-]
-
-{ #category : 'private' }
-RSCanvasElement >> newFixedShapeElements [
-	"Answer a collection of BlElement instances that represent the #fixedShapes. The fixedShapes of a RSCanvas are shapes that are not affected by camera transformations. They are useful for toolbar buttons or legends, for example."
-
-	^ roassalCanvas fixedShapes collect: [ :each |
-		  each asBlElement
-			  addBlocToRoassalEventHandler: elementListener;
-			  yourself ]
-]
-
-{ #category : 'private' }
-RSCanvasElement >> newRegularShapeElements [
-	"Answer a collection of BlElement instances that represent the regular RSShapes of a RSCanvas. These are the regular shapes, that must be translated and scaled according to the camera."
-
-	^ roassalCanvas shapes collect: [ :each |
-		  each asBlElement
-			  addBlocToRoassalEventHandler: elementListener;
-			  yourself ]
 ]
 
 { #category : 'accessing' }
