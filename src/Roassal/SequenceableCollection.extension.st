@@ -8,16 +8,6 @@ SequenceableCollection >> argmax [
 ]
 
 { #category : '*Roassal' }
-SequenceableCollection >> max: aSelectorOrOneArgBlock [
-	^ (self collect: aSelectorOrOneArgBlock) max
-]
-
-{ #category : '*Roassal' }
-SequenceableCollection >> min: aSelectorOrOneArgBlock [
-	^ (self collect: aSelectorOrOneArgBlock) min
-]
-
-{ #category : '*Roassal' }
 SequenceableCollection >> reverseSortedAs: aSortBlockOrSymbol [
 	"Answer a SortedCollection whose elements are the elements of the
 	receiver. The sort order is defined by the argument, aSortBlock."
