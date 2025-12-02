@@ -69,11 +69,13 @@ RSMorphicHost >> dirtyRectangle [
 
 { #category : 'accessing' }
 RSMorphicHost >> dirtyRectangle: aRectangleOrNil [
+
 	| visibleRectangle |
 	dirtyRectangle := aRectangleOrNil.
 	dirtyRectangle ifNil: [ ^ self ].
 	visibleRectangle := canvas visibleRectangle.
-	dirtyRectangle := dirtyRectangle intersect: visibleRectangle
+	"We already do the same check above but this second guard is here to workaround a concurrency problem..."
+	dirtyRectangle := dirtyRectangle ifNotNil: [ :dr | dr intersect: visibleRectangle ]
 ]
 
 { #category : 'antialiasing' }
