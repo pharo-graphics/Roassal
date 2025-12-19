@@ -3,8 +3,8 @@ Class {
 	#superclass : 'BlElement',
 	#instVars : [
 		'roassalCanvas',
-		'elementListener',
-		'cameraElement'
+		'cameraElement',
+		'blocToRoassalListener'
 	],
 	#category : 'Roassal-Bloc-Elements',
 	#package : 'Roassal-Bloc',
@@ -51,6 +51,18 @@ RSCanvasElement >> addRegularShapeElements [
 
 	roassalCanvas shapes do: [ :each |
 		self addRegularShapeElementFor: each ]
+]
+
+{ #category : 'accessing' }
+RSCanvasElement >> canvasPointInBlLocal: aPoint [ 
+
+	^ roassalCanvas camera fromSpaceToPixel: aPoint
+]
+
+{ #category : 'accessing' }
+RSCanvasElement >> canvasPointInBlSpace: aPoint [
+
+	^ self localPointToGlobal: (self canvasPointInBlLocal: aPoint)
 ]
 
 { #category : 'accessing' }
