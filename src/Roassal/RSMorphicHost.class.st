@@ -144,7 +144,7 @@ RSMorphicHost >> openWithTitle: aTitleAsString [
 	| window |
 	self createMorph.
 	window := morph openInWindowLabeled: aTitleAsString.
-	window extent: 500 @ 500.
+	window extent: self defaultWindowExtent.
 	morph privateOwner: window.
 	^ window
 ]

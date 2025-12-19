@@ -210,7 +210,8 @@ RSBlocExamples >> example08ZoomToFitWhenExtentChangedEvent [
 	| canvas |
 	canvas := self newCanvas.
 
-	canvas add: (RSBox new
+	canvas add:
+		(RSEllipse new
 			 color: Color blue;
 			 position: 100 asPoint;
 			 size: 5000 @ 3000;

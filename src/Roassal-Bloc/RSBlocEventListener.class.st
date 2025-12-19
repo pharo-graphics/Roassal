@@ -13,10 +13,10 @@ Class {
 }
 
 { #category : 'instance creation' }
-RSBlocEventListener class >> newForCanvas: aRSHost [ 
+RSBlocEventListener class >> newWithCanvas: aRSHost [ 
 	
 	^ self basicNew
-		initializeForCanvas: aRSHost;
+		initializeWithCanvas: aRSHost;
 		yourself
 ]
 
@@ -27,8 +27,8 @@ RSBlocEventListener >> announceEventOfClass: aRSEventClass actionClass: anAction
 	targetShape := aBlEvent target roassalShape.
 
 	((targetShape handleAnnouncementClass: anActionClass) or: [
-		(targetShape handleAnnouncementClass: aRSEventClass)]) ifFalse:[ 
-		targetShape := roassalCanvas ].
+		(targetShape handleAnnouncementClass: aRSEventClass)])
+			ifFalse:[ targetShape := roassalCanvas ].
 
 	aBlEvent consumed: true.
 	aRSEvent := aRSEventClass newFromBlEvent: aBlEvent canvas: roassalCanvas.
@@ -106,7 +106,7 @@ RSBlocEventListener >> dragStartEvent: aBlEvent [
 ]
 
 { #category : 'initialization' }
-RSBlocEventListener >> initializeForCanvas: aRSCanvas [
+RSBlocEventListener >> initializeWithCanvas: aRSCanvas [
 
 	self initialize.
 	roassalCanvas := aRSCanvas

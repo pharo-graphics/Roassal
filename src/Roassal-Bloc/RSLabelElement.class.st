@@ -18,7 +18,7 @@ RSLabelElement class >> newWith: aRSLabel [
 ]
 
 { #category : 'adding' }
-RSLabelElement >> addBlocToRoassalEventHandler: aHandler [
+RSLabelElement >> addBlocToRoassalListener: aHandler [
 
 	self addEventHandler: aHandler
 ]

@@ -55,6 +55,50 @@ RSRoassalTest >> testOpenOnce [
 ]
 
 { #category : 'tests' }
+RSRoassalTest >> testOpenWithDefaultExtent [
+	"Many examples trigger an initial action via RSExtentChangedEvent."
+
+	| events canvas window |
+	events := OrderedCollection new.
+
+	canvas := RSCanvas new.
+	canvas
+		when: RSExtentChangedEvent
+		send: #add:
+		to: events.
+	window := canvas open.
+	World doOneCycleNow.
+	window delete.
+
+	self assert: window extent equals: 500@500. "Default extent"
+	self assert: events size equals: 1.
+	self assert: events first oldExtent equals: 500@500
+]
+
+{ #category : 'tests' }
+RSRoassalTest >> testOpenWithExplicitExtent [
+	"Many examples trigger an initial action via RSExtentChangedEvent."
+
+	| events canvas window |
+	events := OrderedCollection new.
+
+	canvas := RSCanvas new.
+	canvas extent: 200@100.
+	canvas
+		when: RSExtentChangedEvent
+		send: #add:
+		to: events.
+	window := canvas open.
+	World doOneCycleNow.
+	window delete.
+
+	"Default window extent overrides canvas extent"
+	self assert: window extent equals: 500@500.
+	self assert: events size equals: 1.
+	self assert: events first oldExtent equals: 200@100
+]
+
+{ #category : 'tests' }
 RSRoassalTest >> testRemoveInteractionIfPresent [
 	| box |
 	box := RSBox new.

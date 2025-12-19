@@ -75,3 +75,60 @@ RSBlocHostTest >> testAsForm [
 	self assert: (form colorAt: 1@1) equals: Color blue.
 	self assert: (form colorAt: form extent // 2) equals: Color red
 ]
+
+{ #category : 'tests' }
+RSBlocHostTest >> testOpenWithDefaultExtent [
+	"Many examples trigger an initial action via RSExtentChangedEvent."
+
+	| events canvas space semaphore |
+	events := OrderedCollection new.
+
+	canvas := RSCanvas new.
+	canvas useBlocHost.
+	semaphore := Semaphore new.
+	canvas
+		when: RSExtentChangedEvent
+		do: [ :evt |
+			events add: evt.
+			semaphore signal ]
+		for: self.
+	space := canvas open.
+	semaphore
+		waitTimeoutMilliseconds: 1000
+		onCompletion: [ space close ]
+		onTimeout: [ self fail ].
+
+	self assert: space extent equals: 500@500. "Default extent"
+	self assert: events size equals: 1.
+	self assert: events first newExtent equals: 500@500
+]
+
+{ #category : 'tests' }
+RSBlocHostTest >> testOpenWithExplicitExtent [
+	"Imitate Morphic host, which overrides initial canvas extent with 500@500."
+
+	| events canvas space semaphore |
+	events := OrderedCollection new.
+
+	canvas := RSCanvas new.
+	canvas useBlocHost.
+	canvas extent: 200@100.
+
+	semaphore := Semaphore new.
+	canvas
+		when: RSExtentChangedEvent
+		do: [ :evt |
+			events add: evt.
+			semaphore signal ]
+		for: self.
+	space := canvas open.
+	semaphore
+		waitTimeoutMilliseconds: 1000
+		onCompletion: [ space close ]
+		onTimeout: [ self fail ].
+
+	self assert: space extent equals: 500@500.
+	self assert: events size equals: 1.
+	self assert: events first oldExtent equals: 200@100.
+	self assert: events first newExtent equals: 500@500
+]
