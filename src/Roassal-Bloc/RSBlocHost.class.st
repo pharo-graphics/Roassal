@@ -79,8 +79,20 @@ RSBlocHost >> openWithTitle: aTitleAsString [
 	"Open a canvas with a given title"
 
 	self createSpace.
-	space	title: aTitleAsString.
-	space show.
+
+	"Force announcement of an initial BlSpaceShownEvent.
+	Many Roassal examples show this assumption.
+	See: https://github.com/pharo-graphics/Roassal/issues/139"
+	space addEventHandlerOn: BlSpaceShownEvent doOnce: [
+		space extent = canvas extent ifTrue: [
+			canvas notifyExtentChanged: canvas extent ] ].
+
+	"We imitate Morphic host, which ignores the canvas extent"
+	space extent: self defaultWindowExtent.
+
+	space
+		title: aTitleAsString;
+		show.
 
 	^ space
 ]

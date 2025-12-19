@@ -3,8 +3,8 @@ Class {
 	#superclass : 'BlElement',
 	#instVars : [
 		'roassalCanvas',
-		'elementListener',
-		'cameraElement'
+		'cameraElement',
+		'blocToRoassalListener'
 	],
 	#category : 'Roassal-Bloc-Elements',
 	#package : 'Roassal-Bloc',
@@ -24,7 +24,7 @@ RSCanvasElement >> addFixedShapeElementFor: aRSShape [
 
 	self addChild:
 		(aRSShape asBlElement
-			addBlocToRoassalEventHandler: elementListener;
+			addBlocToRoassalListener: blocToRoassalListener;
 			yourself)
 ]
 
@@ -41,7 +41,7 @@ RSCanvasElement >> addRegularShapeElementFor: aRSShape [
 
 	cameraElement addChild:
 		(aRSShape asBlElement
-			addBlocToRoassalEventHandler: elementListener;
+			addBlocToRoassalListener: blocToRoassalListener;
 			yourself)
 ]
 
@@ -51,6 +51,16 @@ RSCanvasElement >> addRegularShapeElements [
 
 	roassalCanvas shapes do: [ :each |
 		self addRegularShapeElementFor: each ]
+]
+
+{ #category : 'accessing' }
+RSCanvasElement >> childAtShape: aRSShape ifFound: foundBlock ifNone: noneBlock [
+
+	self childrenDo: [ :each |
+		each roassalShape == aRSShape
+			ifTrue: [ ^ foundBlock value: each ] ].
+
+	noneBlock value
 ]
 
 { #category : 'accessing' }
@@ -72,11 +82,12 @@ RSCanvasElement >> handleRSShapeAddedEvent: evt [
 { #category : 'private' }
 RSCanvasElement >> handleRSShapeRemovedEvent: evt [
 	
-	self flag: #todo. "Remove handler"
-
 	self
-		elementAtShape: evt shape
-		ifFound: [ :element | element removeFromParent ]
+		childAtShape: evt shape
+		ifFound: [ :element |
+			element
+				removeEventHandler: blocToRoassalListener;
+				removeFromParent ]
 		ifNone: [ #couldntRemoveShapeElement traceCr ]
 ]
 
@@ -87,20 +98,21 @@ RSCanvasElement >> initializeWithCanvas: aRSCanvas [
 
 	roassalCanvas := aRSCanvas.
 
-	elementListener := RSBlocEventListener newForCanvas: aRSCanvas.
+	blocToRoassalListener := RSBlocEventListener newWithCanvas: aRSCanvas.
 	cameraElement := RSCameraElement newWithCanvas: aRSCanvas.
 
 	self addFixedShapeElements.
 	self addRegularShapeElements.
 	
 	self
-		extent: aRSCanvas extent;
+		constraintsDo: [ :c |
+			c horizontal matchParent.
+			c vertical matchParent ];
 		enqueueTask: (RSBlocAnimationPlayingTask newWithCanvas: aRSCanvas);
 		addChild: cameraElement.
 	
-	self
-		subscribeBlocToRoassal;
-		subscribeRoassalToBloc
+	self subscribeToBlEvents.
+	self subscribeToRSShape: roassalCanvas
 ]
 
 { #category : 'accessing' }
@@ -122,7 +134,7 @@ RSCanvasElement >> signalUpdate [
 	As an optimization, multiple signalUpdate requests may be converted as a single redraw."
 
 
-	self updateFromRoassalCanvas.
+	self updateFromRSCanvas.
 
 	"Skip if the request is already done."
 "	signalUpdateRequested ifTrue: [ ^ self ].
@@ -138,10 +150,10 @@ RSCanvasElement >> signalUpdate [
 ]
 
 { #category : 'initialization' }
-RSCanvasElement >> subscribeBlocToRoassal [
+RSCanvasElement >> subscribeToBlEvents [
 
 	self
-		addEventHandler: elementListener;
+		addEventHandler: blocToRoassalListener;
 		addEventHandlerOn: BlElementExtentChangedEvent
 			do: [ :evt | self updateRSCanvasExtent ];
 		addEventHandlerOn: BlElementAddedToSceneGraphEvent 
@@ -149,21 +161,21 @@ RSCanvasElement >> subscribeBlocToRoassal [
 ]
 
 { #category : 'initialization' }
-RSCanvasElement >> subscribeRoassalToBloc [
+RSCanvasElement >> subscribeToRSShape: aShape [
 
-	roassalCanvas
+	aShape
 		when: RSShapeAddedEvent
-		do: [ :evt | self handleRSShapeAddedEvent: evt ]
-		for: self.
+		send: #handleRSShapeAddedEvent:
+		to: self.
 
-	roassalCanvas
+	aShape
 		when: RSShapeRemovedEvent
-		do: [ :evt | self handleRSShapeRemovedEvent: evt ]
-		for: self
+		send: #handleRSShapeRemovedEvent:
+		to: self
 ]
 
 { #category : 'refreshing' }
-RSCanvasElement >> updateFromRoassalCanvas [
+RSCanvasElement >> updateFromRSCanvas [
 
 	self background: roassalCanvas color.
 
@@ -172,9 +184,8 @@ RSCanvasElement >> updateFromRoassalCanvas [
 
 { #category : 'refreshing' }
 RSCanvasElement >> updateRSCanvasExtent [
-	"Note: RSCanvas extent change does not trigger signalUpdate"
 
-	self extent isZero ifFalse: [
-			roassalCanvas extent: self extent.
-			self updateFromRoassalCanvas ]
+	self extent isZero ifTrue: [ ^ self ].
+	roassalCanvas extent: self extent.
+	self updateFromRSCanvas
 ]

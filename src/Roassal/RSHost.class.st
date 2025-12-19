@@ -41,6 +41,12 @@ RSHost >> canvas: aRSCanvas [
 ]
 
 { #category : 'accessing' }
+RSHost >> defaultWindowExtent [
+
+	^ 500 @ 500
+]
+
+{ #category : 'accessing' }
 RSHost >> defaultWindowTitle [
 
 	^ 'Roassal'

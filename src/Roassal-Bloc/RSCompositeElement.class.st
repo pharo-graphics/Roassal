@@ -10,12 +10,12 @@ Class {
 }
 
 { #category : 'adding' }
-RSCompositeElement >> addBlocToRoassalEventHandler: aHandler [
+RSCompositeElement >> addBlocToRoassalListener: aHandler [
 
-	super addBlocToRoassalEventHandler: aHandler.
+	super addBlocToRoassalListener: aHandler.
 	
-	self allChildrenDepthFirstDo: [ :each |
-		each addEventHandler: aHandler ]
+	self childrenDo: [ :each |
+		each addBlocToRoassalListener: aHandler ]
 ]
 
 { #category : 'refreshing' }

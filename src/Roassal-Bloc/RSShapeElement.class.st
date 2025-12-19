@@ -21,7 +21,7 @@ RSShapeElement class >> newWith: aRSShape [
 ]
 
 { #category : 'adding' }
-RSShapeElement >> addBlocToRoassalEventHandler: aHandler [
+RSShapeElement >> addBlocToRoassalListener: aHandler [
 
 	self addEventHandler: aHandler
 ]
