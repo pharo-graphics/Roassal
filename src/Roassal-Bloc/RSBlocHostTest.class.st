@@ -75,3 +75,52 @@ RSBlocHostTest >> testAsForm [
 	self assert: (form colorAt: 1@1) equals: Color blue.
 	self assert: (form colorAt: form extent // 2) equals: Color red
 ]
+
+{ #category : 'tests' }
+RSBlocHostTest >> testClick [
+
+	| canvas shape positionInRSCanvas canvasElement container positionInBlSpace |
+
+	"We add a canvas to a container element that has a position (to add complexity)"
+	canvas := RSCanvas new.
+	canvas useBlocHost.
+	shape := RSBox new
+		         color: Color red;
+		         position: 20 @ 10;
+		         extent: 40 @ 30;
+		         yourself.
+	canvas addShape: shape.
+	canvasElement := canvas host canvasElement.
+	container := BlElement new
+		             background: Color green;
+		             position: 20 @ 10;
+		             extent: 400 @ 300;
+		             yourself.
+	container addChild: canvasElement.
+
+	canvas
+		when: RSMouseLeftClick
+		do: [ :evt | positionInRSCanvas := evt position ]
+		for: self.
+
+	"Click at the center of the RSBox"
+	positionInBlSpace := 250.0@245.0.
+	"(canvasElement elementAtShape: shape) boundsInSpace center"
+
+	BlSpace
+		simulateEvents: {
+			((BlMouseDownEvent button: BlMouseButton primary)
+				 position: positionInBlSpace;
+				 yourself).
+			((BlMouseUpEvent button: BlMouseButton primary)
+				 position: positionInBlSpace;
+				 yourself) }
+		on: container.
+
+	self
+		assert: (canvasElement canvasPointInBlSpace: positionInRSCanvas)
+		equals: positionInBlSpace.
+	self
+		assert: (canvasElement canvasPointInBlLocal: positionInRSCanvas)
+		equals: positionInBlSpace - container position
+]
