@@ -18,8 +18,3 @@ AthensCubicSegment >> pointsWithStart: aPoint duration: duration [
 		a * (t raisedTo: 3) + (b * (t * t)) + (c * t) + aPoint.
 		]
 ]
-
-{ #category : '*Roassal-SVG' }
-AthensCubicSegment >> visitWith: visitor [
-	visitor visitCubicSegment: self
-]
