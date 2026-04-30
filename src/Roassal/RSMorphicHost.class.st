@@ -66,6 +66,13 @@ RSMorphicHost >> asForm [
 	^ formCanvas form
 ]
 
+{ #category : 'accessing' }
+RSMorphicHost >> canvas: aRSCanvas [
+
+	super canvas: aRSCanvas.
+	self createMorph
+]
+
 { #category : 'private' }
 RSMorphicHost >> createMorph [
 	"Create a Morph that contains myself. This is a private method"
