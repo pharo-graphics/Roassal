@@ -17,7 +17,8 @@ RSParallelAnimation >> continue [
 
 { #category : 'accessing' }
 RSParallelAnimation >> duration [
-	animations ifEmpty: [ ^ 0 asDuration ].
+
+	animations ifEmpty: [ ^ Duration seconds: 0 ].
 	^ (animations collect: #allDuration) max
 ]
 
