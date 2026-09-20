@@ -509,7 +509,7 @@ RSCanvasTest >> testVisibleArea [
 	smallSize := 100.
 	bigSize := 500.
 	box := RSBox new.
-	box size: smallSize asPoint.
+	box size: 100 @ 100.
 	box position: box extent / 2.
 	canvas add: box.
 	canvas extent: bigSize asPoint.
