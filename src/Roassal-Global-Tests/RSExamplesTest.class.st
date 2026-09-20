@@ -13,7 +13,6 @@ RSExamplesTest class >> validMethods: methods [
 		(met selector beginsWith: 'example') and: [
 			(met hasPragmaNamed: 'noTest') not ] ].
 
-	result sort: CompiledMethod sortBlock.
 	^ result
 ]
 

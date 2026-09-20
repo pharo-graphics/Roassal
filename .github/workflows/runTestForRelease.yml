@@ -4,9 +4,9 @@ name: CIRelease
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [ Pharo13 ]
   pull_request:
-    branches: [ master ]
+    branches: [ Pharo13 ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

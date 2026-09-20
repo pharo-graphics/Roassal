@@ -1,9 +1,9 @@
 Extension { #name : 'RSObjectWithProperty' }
 
 { #category : '*Roassal-Inspector' }
-RSObjectWithProperty >> inspectorAnnouncer [
+RSObjectWithProperty >> inspectorAnnouncer: aBuilder [
 	<inspectorPresentationOrder: 110 title: 'Announcer'>
-	^ announcer inspectionSubscriptions
+	^ announcer inspectionSubscriptions: aBuilder
 ]
 
 { #category : '*Roassal-Inspector' }

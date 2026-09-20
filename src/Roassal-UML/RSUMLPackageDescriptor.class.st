@@ -38,7 +38,7 @@ RSUMLPackageDescriptor >> classname: anObject [
 RSUMLPackageDescriptor >> forPharo [
 	self
 		packagename: #name;
-		classes: [:pkg| pkg definedClasses sorted: Behavior sortBlock ];
+		classes: [:pkg| pkg definedClasses sorted: [ :a :b | a name <= b name ] ];
 		classname: #name
 ]
 

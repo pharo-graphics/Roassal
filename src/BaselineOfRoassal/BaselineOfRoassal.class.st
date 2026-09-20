@@ -170,7 +170,7 @@ BaselineOfRoassal >> geometry: spec [
 BaselineOfRoassal >> layouts: spec [
 	spec
 		baseline: 'RoassalLayouts'
-		with: [ spec repository: 'github://pharo-graphics/RoassalLayouts:v1.01/src' ]
+		with: [ spec repository: 'github://pharo-graphics/RoassalLayouts:Pharo13/src' ]
 ]
 
 { #category : 'dependencies' }
