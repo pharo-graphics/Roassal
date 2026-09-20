@@ -13,11 +13,12 @@ RSCircleTest >> testBasic [
 
 { #category : 'tests' }
 RSCircleTest >> testCenter [
+
 	| center circle |
-	center := 100 asPoint.
+	center := 100 @ 100.
 	circle := RSCircle new
-		radius: 10;
-		center: center;
-		yourself.
+		          radius: 10;
+		          center: center;
+		          yourself.
 	self assert: circle center equals: center
 ]

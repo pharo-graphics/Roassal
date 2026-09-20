@@ -208,14 +208,13 @@ RSCanvasTest >> testEventKnowsItsCanvas02 [
 
 { #category : 'events' }
 RSCanvasTest >> testLowLevelEvent [
+
 	| box |
 	box := RSBox new size: 30.
 	box when: RSMouseDragging do: [ :evt | box ] for: self.
 	canvas addShape: box.
-	self assert: canvas extent equals: 500 asPoint.
-	self
-		assert: (canvas shapeWithAction: RSMouseDragging forPositionInPixels: 250 @ 250)
-		identicalTo: box
+	self assert: canvas extent equals: 500 @ 500.
+	self assert: (canvas shapeWithAction: RSMouseDragging forPositionInPixels: 250 @ 250) identicalTo: box
 ]
 
 { #category : 'tests - opening' }
@@ -505,6 +504,7 @@ RSCanvasTest >> testUseRTree [
 
 { #category : 'tests - shapes ordering' }
 RSCanvasTest >> testVisibleArea [
+
 	| box smallSize bigSize |
 	smallSize := 100.
 	bigSize := 500.
@@ -513,7 +513,7 @@ RSCanvasTest >> testVisibleArea [
 	box position: box extent / 2.
 	canvas add: box.
 	canvas extent: bigSize asPoint.
-	canvas visibleArea: (0 asPoint corner: smallSize asPoint).
+	canvas visibleArea: (0 @ 0 corner: smallSize asPoint).
 	self assert: canvas position equals: bigSize asPoint / -2.
 	self assert: canvas camera scale equals: bigSize / smallSize
 ]

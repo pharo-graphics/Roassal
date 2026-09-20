@@ -108,7 +108,7 @@ RSCircleVennDiagram >> renderIn: aCanvas [
 	aCanvas newCircle
 		radius: bigRadius * 10;
 		color: Color blue translucent;
-		position: 0 asPoint.
+		position: 0 @ 0.
 	aCanvas newCircle
 		radius: smallRadius * 10;
 		position: distance * 10 @ 0;

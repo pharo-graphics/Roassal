@@ -26,12 +26,9 @@ RSSelectionInCanvasInteractionTest >> testAnnounceWhenSelectionStart [
 	selectionFrom := nil.
 	canvas @ RSSelectionInCanvasInteraction.
 
-	canvas
-		when: RSSelectionStartEvent
-		do: [ :evt | selectionFrom := evt selectedShapes ]
-		for: self.
+	canvas when: RSSelectionStartEvent do: [ :evt | selectionFrom := evt selectedShapes ] for: self.
 	canvas announce: (RSMouseLeftDragStart new
-			 position: 0 asPoint;
+			 position: 0 @ 0;
 			 shiftKeyPressed: true;
 			 yourself).
 	self assert: selectionFrom isNotNil
