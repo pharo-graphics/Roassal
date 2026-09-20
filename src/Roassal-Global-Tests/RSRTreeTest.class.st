@@ -78,11 +78,13 @@ RSRTreeTest >> testAllChildren [
 
 { #category : 'tests' }
 RSRTreeTest >> testBalanced [
-	1 to: 10 do: [ :each | | box |
-		box := RSBox new.
-		box size: 10.
-		box position: each * 10 asPoint.
-		tree add: box. ].
+
+	1 to: 10 do: [ :each |
+			| box |
+			box := RSBox new.
+			box size: 10.
+			box position: each * (10 @ 10).
+			tree add: box ].
 	self assert: tree notEmpty.
 	self assert: tree size equals: 10.
 	self assert: tree isBalanced
@@ -90,14 +92,15 @@ RSRTreeTest >> testBalanced [
 
 { #category : 'tests' }
 RSRTreeTest >> testContainsPointInRTree [
+
 	| canvas collection box shape position |
 	canvas := RSCanvas new.
 	canvas useRTree.
-	position := 1000 asPoint.
+	position := 1000 @ 1000.
 	box := RSBox new
-		size: 100 asPoint;
-		position: position;
-		yourself.
+		       size: 100 @ 100;
+		       position: position;
+		       yourself.
 	collection := canvas shapeCollection.
 	canvas add: box.
 	self assert: collection notEmpty.
