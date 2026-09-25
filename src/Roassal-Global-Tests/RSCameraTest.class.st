@@ -25,37 +25,41 @@ RSCameraTest >> testPosition [
 
 { #category : 'tests' }
 RSCameraTest >> testVisibleArea [
+
 	| canvas |
 	canvas := RSCanvas new.
-	canvas extent: 100 asPoint.
-	self assert: canvas visibleRectangle equals: (-50 asPoint corner: 50 asPoint)
+	canvas extent: 100 @ 100.
+	self assert: canvas visibleRectangle equals: (-50 @ -50 corner: 50 @ 50)
 ]
 
 { #category : 'tests' }
 RSCameraTest >> testVisibleAreaTopLeft [
+
 	| canvas |
 	canvas := RSCanvas new.
 	canvas originTopLeft.
-	canvas extent: 100 asPoint.
-	self assert: canvas visibleRectangle equals: (0 asPoint corner: 100 asPoint)
+	canvas extent: 100 @ 100.
+	self assert: canvas visibleRectangle equals: (0 @ 0 corner: 100 @ 100)
 ]
 
 { #category : 'tests' }
 RSCameraTest >> testVisibleAreaWTopLeftWithScale [
+
 	| canvas |
 	canvas := RSCanvas new.
-	canvas extent: 100 asPoint.
+	canvas extent: 100 @ 100.
 	canvas originTopLeft.
 	canvas camera scale: 2.
-	self assert: canvas visibleRectangle equals: (0 asPoint corner: 50 asPoint)
+	self assert: canvas visibleRectangle equals: (0 @ 0 corner: 50 @ 50)
 ]
 
 { #category : 'tests' }
 RSCameraTest >> testVisibleAreaWithScale [
+
 	| canvas |
 	canvas := RSCanvas new.
-	canvas extent: 100 asPoint.
+	canvas extent: 100 @ 100.
 	canvas camera scale: 2.
 
-	self assert: canvas visibleRectangle equals: (-25 asPoint corner: 25 asPoint)
+	self assert: canvas visibleRectangle equals: (-25 @ -25 corner: 25 @ 25)
 ]

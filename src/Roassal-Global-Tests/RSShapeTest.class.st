@@ -44,37 +44,31 @@ RSShapeTest >> testBorderDoUpdatesInvalidateShape [
 	tmp3 := RSBox new.
 	tmp3 size: 20.
 	tmp1 := tmp3 yourself.
-	self
-		assert: tmp1 encompassingRectangle
-		equals: ( -10 asPoint corner: 10 asPoint).
+	self assert: tmp1 encompassingRectangle equals: (-10 @ -10 corner: 10 @ 10).
 	tmp1 borderDo: [ :arg1 |
-		arg1
-			width: 12;
-			dashArray: #( 3 1 2 ) ].
-	self
-		assert: tmp1 encompassingRectangle
-		equals: ( -16 asPoint corner: 16 asPoint)
+			arg1
+				width: 12;
+				dashArray: #( 3 1 2 ) ].
+	self assert: tmp1 encompassingRectangle equals: (-16 @ -16 corner: 16 @ 16)
 ]
 
 { #category : 'tests' }
 RSShapeTest >> testChangeBorderUpdatesEncompassingRectangle [
+
 	| box |
 	box := RSBox new
 		       size: 20;
 		       yourself.
-	self
-		assert: box encompassingRectangle
-		equals: (-10 asPoint corner: 10 asPoint).
+	self assert: box encompassingRectangle equals: (-10 @ -10 corner: 10 @ 10).
 	box border: (RSBorder new
 			 width: 8;
 			 yourself).
-	self
-		assert: box encompassingRectangle
-		equals: (-14 asPoint corner: 14 asPoint)
+	self assert: box encompassingRectangle equals: (-14 @ -14 corner: 14 @ 14)
 ]
 
 { #category : 'tests' }
 RSShapeTest >> testChangeBorderWidthUpdatesEncompassingRectangle [
+
 	| box |
 	box := RSBox new
 		       size: 20;
@@ -82,13 +76,9 @@ RSShapeTest >> testChangeBorderWidthUpdatesEncompassingRectangle [
 	box border: (RSBorder new
 			 width: 8;
 			 yourself).
-	self
-		assert: box encompassingRectangle
-		equals: (-14 asPoint corner: 14 asPoint).
+	self assert: box encompassingRectangle equals: (-14 @ -14 corner: 14 @ 14).
 	box borderWidth: 12.
-	self
-		assert: box encompassingRectangle
-		equals: (-16 asPoint corner: 16 asPoint)
+	self assert: box encompassingRectangle equals: (-16 @ -16 corner: 16 @ 16)
 ]
 
 { #category : 'tests' }
@@ -101,6 +91,7 @@ RSShapeTest >> testEmptyIndexesArray [
 
 { #category : 'tests' }
 RSShapeTest >> testEncompassingRectangleContainsBorderWidth [
+
 	| box |
 	box := RSBox new
 		       size: 10;
@@ -108,7 +99,7 @@ RSShapeTest >> testEncompassingRectangleContainsBorderWidth [
 	box border: (RSBorder new
 			 width: 4;
 			 yourself).
-	self assert: box encompassingRectangle equals: (-7 asPoint corner: 7 asPoint)
+	self assert: box encompassingRectangle equals: (-7 @ -7 corner: 7 @ 7)
 ]
 
 { #category : 'tests' }

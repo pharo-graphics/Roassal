@@ -67,5 +67,6 @@ RSEllipse >> radius [
 
 { #category : 'accessing' }
 RSEllipse >> radius: integer [
-	self extent: integer * 2 asPoint
+
+	self extent: integer * (2 @ 2)
 ]
