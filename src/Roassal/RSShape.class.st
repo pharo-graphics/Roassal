@@ -173,8 +173,7 @@ RSShape >> announce: anEventOrAnEventClassOrABlock [
 	announcer ifNil: [ ^ self ].
 	theEventToSend := anEventOrAnEventClassOrABlock value asAnnouncement.
 	theEventToSend canvas ifNil: [ theEventToSend canvas: self canvas ].
-
-	theEventToSend shape: self.
+	theEventToSend shape ifNil: [ theEventToSend shape: self ].
 	announcer announce: theEventToSend
 ]
 
