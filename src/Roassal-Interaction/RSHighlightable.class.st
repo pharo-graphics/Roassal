@@ -582,6 +582,13 @@ RSHighlightable >> withIncomingLines [
 ]
 
 { #category : 'public - hooks' }
+RSHighlightable >> withIncomingShapes [
+
+    self highlightShapes: [ :s |
+        s incomingLines collect: [ :aLine | aLine from ] as: RSGroup ]
+]
+
+{ #category : 'public - hooks' }
 RSHighlightable >> withLines [
 	self highlightShapes: [ :s |
 		| list |

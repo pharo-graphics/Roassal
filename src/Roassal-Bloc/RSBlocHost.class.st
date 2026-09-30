@@ -15,12 +15,34 @@ Class {
 	#tag : 'Core'
 }
 
+{ #category : 'converting' }
+RSBlocHost >> asForm [
+
+	self createSpace.
+	^ space root asForm
+]
+
 { #category : 'opening' }
 RSBlocHost >> canvasElement [
 	"Analog to RSCanvas>>createMorph"
 
 	^ canvasElement ifNil: [
 		canvasElement := RSCanvasElement newWithCanvas: canvas ]
+]
+
+{ #category : 'opening' }
+RSBlocHost >> createSpace [
+
+	space := BlSpace new
+		extent: canvas extent;
+		yourself.
+
+	space root addChild:
+		(self canvasElement
+			constraintsDo: [ :c |
+				c horizontal matchParent.
+				c vertical matchParent ];
+			yourself)
 ]
 
 { #category : 'accessing' }
@@ -47,25 +69,20 @@ RSBlocHost >> lastMousePosition [
 ]
 
 { #category : 'accessing' }
-RSBlocHost >> lastMousePosition: anObject [
+RSBlocHost >> lastMousePosition: aPoint [
 
-	lastMousePosition := anObject
+	lastMousePosition := aPoint
 ]
 
 { #category : 'opening' }
 RSBlocHost >> openWithTitle: aTitleAsString [
 	"Open a canvas with a given title"
 
-	space := BlSpace new
-		extent: canvas extent;
-		title: aTitleAsString;
-		yourself.
-
-	space root addChild: self canvasElement.
+	self createSpace.
+	space	title: aTitleAsString.
 	space show.
 
 	^ space
-
 ]
 
 { #category : 'opening' }

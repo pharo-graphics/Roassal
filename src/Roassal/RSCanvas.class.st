@@ -155,12 +155,9 @@ RSCanvas >> announcementClasses [
 
 { #category : 'converting' }
 RSCanvas >> asForm [
-	| canvas |
-	canvas := FormCanvas extent: self extent.
-	(self morph ifNil: [ self createMorph ])
-		extent: self extent;
-		drawOn: canvas.
-	^ canvas form
+	"Answer a Form representation of the canvas. Delegate to the host."
+
+	^ host asForm
 ]
 
 { #category : 'accessing' }
@@ -240,7 +237,7 @@ RSCanvas >> createMorph [
 	"Create a Morph that contains myself. This is a private method"
 	<deprecated: 'This only works when the host is a RSMorphicHost'>
 
-	^ host	 createMorph
+	^ host createMorph
 ]
 
 { #category : 'accessing' }

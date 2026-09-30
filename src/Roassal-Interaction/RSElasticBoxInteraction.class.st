@@ -119,18 +119,17 @@ RSElasticBoxInteraction >> createCameraAnimation: event [
 
 	| canvas animation position correct |
 	canvas := event canvas.
-	cameraDelta := 0 asPoint.
-	(canvas hasProperty: self class) ifTrue: [
-		(canvas propertyAt: self class) stop ].
+	cameraDelta := 0 @ 0.
+	(canvas hasProperty: self class) ifTrue: [ (canvas propertyAt: self class) stop ].
 	animation := canvas newAnimation.
 	animation
 		repeat;
 		onStepDo: [
-			canvas camera translateBy: cameraDelta.
-			position := canvas camera position.
-			correct := self correctCamera: canvas camera.
-			correct = position ifFalse: [ canvas camera position: correct ].
-			canvas signalUpdate ]
+				canvas camera translateBy: cameraDelta.
+				position := canvas camera position.
+				correct := self correctCamera: canvas camera.
+				correct = position ifFalse: [ canvas camera position: correct ].
+				canvas signalUpdate ]
 ]
 
 { #category : 'helper' }

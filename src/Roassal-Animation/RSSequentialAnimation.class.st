@@ -41,7 +41,8 @@ RSSequentialAnimation >> currentHasCompleted [
 
 { #category : 'accessing' }
 RSSequentialAnimation >> duration [
-	animations ifEmpty: [ ^ 0 asDuration ].
+
+	animations ifEmpty: [ ^ Duration seconds: 0 ].
 	^ (animations collect: #allDuration) sum
 ]
 

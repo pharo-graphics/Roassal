@@ -33,6 +33,6 @@ RSBoundingShape >> updateBlElement: aShapeElement [
 	aShapeElement
 		extent: self baseRectangle extent;
 		border: self blBorder;
-		background: self blPaint;
+		background: self blBackground;
 		transformation: self blTransformation
 ]

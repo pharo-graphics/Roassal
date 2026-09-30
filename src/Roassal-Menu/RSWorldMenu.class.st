@@ -34,8 +34,7 @@ RSWorldMenu class >> loadExporters [
 { #category : 'loading' }
 RSWorldMenu class >> loadFullVersion [
 	"TODO do not discard changes"
-
-	(UIManager default confirm: 'Do you want to load the last version of Roassal?') ifFalse: [ ^ self ].
+	
 	[
 		Metacello new
 			baseline: 'Roassal';

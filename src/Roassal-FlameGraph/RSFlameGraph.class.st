@@ -85,7 +85,7 @@ RSFlameGraph >> initialize [
 	self
 		graphWidth: 500;
 		boxHeight: 20;
-		gap: 1 asPoint
+		gap: 1 @ 1
 ]
 
 { #category : 'rendering' }

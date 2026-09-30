@@ -9,13 +9,15 @@ RSShape >> asBlElement [
 ]
 
 { #category : '*Roassal-Bloc' }
-RSShape >> blBorder [
+RSShape >> blBackground [
 
-	^ border ifNil: [ BlBorder empty ] ifNotNil: [ border asBlBorder ]
+	^ paint
+		  ifNil: [ BlBackground transparent ]
+		  ifNotNil: [ paint asBlBackground ]
 ]
 
 { #category : '*Roassal-Bloc' }
-RSShape >> blPaint [
+RSShape >> blBorder [
 
-	^ self paint ifNil: [ BlBackground transparent ]
+	^ border ifNil: [ BlBorder empty ] ifNotNil: [ border asBlBorder ]
 ]

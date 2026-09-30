@@ -52,6 +52,27 @@ RSMorphicHost >> antialiasing [
 	^ antialiasing
 ]
 
+{ #category : 'converting' }
+RSMorphicHost >> asForm [
+
+	| formCanvas |
+	formCanvas := FormCanvas extent: canvas extent.
+
+	morph ifNil: [ self createMorph ].
+	morph
+		extent: formCanvas extent;
+		drawOn: formCanvas.
+
+	^ formCanvas form
+]
+
+{ #category : 'accessing' }
+RSMorphicHost >> canvas: aRSCanvas [
+
+	super canvas: aRSCanvas.
+	self createMorph
+]
+
 { #category : 'private' }
 RSMorphicHost >> createMorph [
 	"Create a Morph that contains myself. This is a private method"
@@ -69,11 +90,13 @@ RSMorphicHost >> dirtyRectangle [
 
 { #category : 'accessing' }
 RSMorphicHost >> dirtyRectangle: aRectangleOrNil [
+
 	| visibleRectangle |
 	dirtyRectangle := aRectangleOrNil.
 	dirtyRectangle ifNil: [ ^ self ].
 	visibleRectangle := canvas visibleRectangle.
-	dirtyRectangle := dirtyRectangle intersect: visibleRectangle
+	"We already do the same check above but this second guard is here to workaround a concurrency problem..."
+	dirtyRectangle := dirtyRectangle ifNotNil: [ :dr | dr intersect: visibleRectangle ]
 ]
 
 { #category : 'antialiasing' }

@@ -64,6 +64,8 @@ RSAthensMorph >> checkSession [
 { #category : 'surface management' }
 RSAthensMorph >> createSurface [
 	surface := AthensCairoSurface extent: self extent asIntegerPoint * surfaceScale.
+	surfaceScale > 0 ifTrue: [
+		surface deviceScaleX: surfaceScale y: surfaceScale ].
 	session := Smalltalk session.
 	roassalCanvas ifNotNil: [ roassalCanvas invalidate ]
 ]
@@ -92,7 +94,7 @@ RSAthensMorph >> drawOn: aCanvas [
 					formSet: ((Smalltalk at: #FormSet) extent: self extent asIntegerPoint
 						depth: 32 forms: { surface asForm })
 					at: self bounds origin asIntegerPoint
-					sourceRect: (0 @ 0 extent: surface extent)
+					sourceRect: (0 @ 0 extent: self extent asIntegerPoint)
 					rule: Form blendAlphaScaled ]
 			ifFalse: [
 				aCanvas
@@ -131,8 +133,7 @@ RSAthensMorph >> drawShapes [
 	surface drawDuring: [ :athensCanvas |
 		renderer
 			surface: surface;
-			canvas: athensCanvas;
-			scale: surfaceScale.
+			canvas: athensCanvas.
 		roassalCanvas accept: renderer.
 	]
 ]

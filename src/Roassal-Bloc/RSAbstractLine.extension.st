@@ -5,7 +5,6 @@ RSAbstractLine >> asBlElement [
 
 	^ (RSShapeElement newWith: self)
 		  geometry: self asBlGeometry;
-		  beOutskirtsCentered;
 		  updateFromRoassalShape;
 		  yourself
 ]
@@ -25,7 +24,7 @@ RSAbstractLine >> updateBlElement: aBlElement [
 	aBlElement
 		extent: self encompassingRectangle extent;
 		border: self blBorder;
-		background: self blPaint
+		background: self blBackground
 ]
 
 { #category : '*Roassal-Bloc' }

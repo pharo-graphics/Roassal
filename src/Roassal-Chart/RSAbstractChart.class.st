@@ -247,12 +247,6 @@ RSAbstractChart >> inspectorCanvas: aBuilder [
 		yourself
 ]
 
-{ #category : 'inspector' }
-RSAbstractChart >> inspectorCanvasContext: aContext [
-
-  aContext withoutEvaluator
-]
-
 { #category : 'accessing - extension' }
 RSAbstractChart >> maxChartValueX [
 	"the maximum value displayed on the x-axis of the chart"

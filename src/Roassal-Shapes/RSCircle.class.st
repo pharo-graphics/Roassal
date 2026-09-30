@@ -74,7 +74,8 @@ RSCircle >> radius [
 
 { #category : 'accessing' }
 RSCircle >> radius: integer [
-	self extent: integer * 2 asPoint
+
+	self extent: integer * (2 @ 2)
 ]
 
 { #category : 'accessing' }

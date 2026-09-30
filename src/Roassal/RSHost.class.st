@@ -21,6 +21,13 @@ RSHost class >> example [
 	^ canvas open
 ]
 
+{ #category : 'converting' }
+RSHost >> asForm [
+	"Answer a Form representation of the canvas. Delegate to the host."
+
+	^ self subclassResponsibility
+]
+
 { #category : 'accessing' }
 RSHost >> canvas [
 

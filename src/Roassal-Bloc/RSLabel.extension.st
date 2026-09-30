@@ -19,7 +19,7 @@ RSLabel >> blRopedText [
 
 	| result |
 	result := self text asRopedText 
-		foreground: self blPaint;
+		foreground: self paint;
 		fontSize: self fontSize;
 		fontName: self fontName;
 		yourself.
@@ -29,7 +29,7 @@ RSLabel >> blRopedText [
 	
 	self isUnderlined ifTrue: [ 
 		result underline.
-		result underlineColor: self blPaint ].
+		result underlineColor: self paint ].
 	
 	^ result
 ]
