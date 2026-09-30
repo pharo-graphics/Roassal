@@ -85,12 +85,13 @@ RSCollectionTest >> testAdd [
 
 { #category : 'tests' }
 RSCollectionTest >> testContainsPoint [
+
 	| box shape position |
-	position := 1000 asPoint.
+	position := 1000 @ 1000.
 	box := RSBox new
-		size: 100 asPoint;
-		position: position;
-		yourself.
+		       size: 100 @ 100;
+		       position: position;
+		       yourself.
 	canvas add: box.
 	self assert: shapeCollection notEmpty.
 	shape := canvas shapeWithActionForPosition: position.
@@ -104,12 +105,13 @@ RSCollectionTest >> testContainsPoint [
 
 { #category : 'tests' }
 RSCollectionTest >> testContainsPointInComposite [
+
 	| box shapes position composite |
-	position := 1000 asPoint.
+	position := 1000 @ 1000.
 	box := RSBox new
-		size: 100;
-		position: position;
-		yourself.
+		       size: 100;
+		       position: position;
+		       yourself.
 	composite := { box } asShape size: 200.
 	composite draggable.
 	canvas add: composite.
@@ -123,12 +125,13 @@ RSCollectionTest >> testContainsPointInComposite [
 
 { #category : 'tests' }
 RSCollectionTest >> testContainsShapeWithInteractions [
+
 	| box shape position |
-	position := 1000 asPoint.
+	position := 1000 @ 1000.
 	box := RSBox new
-		size: 100 asPoint;
-		position: position;
-		yourself.
+		       size: 100 @ 100;
+		       position: position;
+		       yourself.
 	canvas add: box.
 	self assert: shapeCollection notEmpty.
 	shape := canvas shapeWithActionForPosition: position.
@@ -145,15 +148,14 @@ RSCollectionTest >> testGetEntriesFromRectangleInParent [
 
 	| listOfShapes box composite |
 	box := RSBox new
-		       size: 20 asPoint;
+		       size: 20 @ 20;
 		       yourself.
 	composite := RSComposite new
 		             size: 100;
 		             yourself.
 	composite add: box.
 	shapeCollection add: composite.
-	listOfShapes := shapeCollection entriesAtRectangle:
-		                (-5 asPoint corner: 5 asPoint).
+	listOfShapes := shapeCollection entriesAtRectangle: (-5 @ -5 corner: 5 @ 5).
 	self assert: listOfShapes asArray equals: { composite }
 ]
 
@@ -162,10 +164,9 @@ RSCollectionTest >> testGetShapeFromRectangle [
 
 	| listOfShapes |
 	shapeCollection add: (RSBox new
-			 size: 20 asPoint;
+			 size: 20 @ 20;
 			 yourself).
-	listOfShapes := shapeCollection entriesAtRectangle:
-		                (-5 asPoint corner: 5 asPoint).
+	listOfShapes := shapeCollection entriesAtRectangle: (-5 @ -5 corner: 5 @ 5).
 	self assert: (listOfShapes includes: shapeCollection anyOne)
 ]
 
@@ -174,25 +175,24 @@ RSCollectionTest >> testGetShapesFromRectangle [
 
 	| listOfShapes box1 box2 box3 |
 	box1 := RSBox new
-		        size: 20 asPoint;
-		        position: -50 asPoint;
+		        size: 20 @ 20;
+		        position: -50 @ -50;
 		        entryIndex: 1;
 		        yourself.
 	box2 := RSBox new
-		        size: 20 asPoint;
-		        position: 50 asPoint;
+		        size: 20 @ 20;
+		        position: 50 @ 50;
 		        entryIndex: 2;
 		        yourself.
 	box3 := RSBox new
-		        size: 20 asPoint;
+		        size: 20 @ 20;
 		        entryIndex: 3;
 		        yourself.
 	shapeCollection addAll: {
 			box1.
 			box2.
 			box3 }.
-	listOfShapes := shapeCollection entriesAtRectangle:
-		                (5 asPoint corner: 45 asPoint).
+	listOfShapes := shapeCollection entriesAtRectangle: (5 @ 5 corner: 45 @ 45).
 	self assert: listOfShapes asArray equals: {
 			box2.
 			box3 }
@@ -203,16 +203,15 @@ RSCollectionTest >> testGetShapesFromRectangleInCompositeWithChildOutside [
 
 	| listOfShapes box composite |
 	box := RSBox new
-		       size: 20 asPoint;
-		       position: 80 asPoint;
+		       size: 20 @ 20;
+		       position: 80 @ 80;
 		       yourself.
 	composite := RSComposite new
 		             size: 100;
 		             yourself.
 	composite add: box.
 	shapeCollection add: composite.
-	listOfShapes := shapeCollection entriesAtRectangle:
-		                (85 asPoint corner: 95 asPoint).
+	listOfShapes := shapeCollection entriesAtRectangle: (85 @ 85 corner: 95 @ 95).
 	self assert: listOfShapes asArray isEmpty
 ]
 

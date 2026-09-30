@@ -10,9 +10,17 @@ RTNode class >> example [
 	right := self new.
 	root left: left.
 	root right: right.
-	left contents: (RSBox model: 'A'); rectangle: (0 asPoint corner: 20 asPoint); height: 1.
-	right contents: (RSBox model: 'B'); rectangle: (30 asPoint corner: 50 asPoint); height: 1.
-	root rectangle: (5 asPoint corner: 45 asPoint); height: 2.
+	left
+		contents: (RSBox model: 'A');
+		rectangle: (0 @ 0 corner: 20 @ 20);
+		height: 1.
+	right
+		contents: (RSBox model: 'B');
+		rectangle: (30 @ 30 corner: 50 @ 50);
+		height: 1.
+	root
+		rectangle: (5 @ 5 corner: 45 @ 45);
+		height: 2.
 
 	^ root inspector
 ]
