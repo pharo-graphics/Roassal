@@ -14,7 +14,8 @@ Class {
 		'methodsLimit',
 		'aggregations',
 		'compositions',
-		'isAbstract'
+		'isAbstract',
+		'associations'
 	],
 	#category : 'Roassal-UML-Descriptor',
 	#package : 'Roassal-UML',
@@ -29,6 +30,17 @@ RSUMLClassDescriptor >> aggregations [
 { #category : 'accessing' }
 RSUMLClassDescriptor >> aggregations: aCollection [
 	aggregations := aCollection
+]
+
+{ #category : 'accessing' }
+RSUMLClassDescriptor >> associations [
+	^ associations
+]
+
+{ #category : 'accessing' }
+RSUMLClassDescriptor >> associations: anObject [
+
+	associations := anObject
 ]
 
 { #category : 'accessing' }

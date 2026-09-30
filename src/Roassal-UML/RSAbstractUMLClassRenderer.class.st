@@ -60,6 +60,13 @@ RSAbstractUMLClassRenderer >> applyVLayoutOn: shapes [
 ]
 
 { #category : 'accessing' }
+RSAbstractUMLClassRenderer >> associationShape [
+	| shape |
+	shape := self simpleLineShape.
+	^ shape.
+]
+
+{ #category : 'accessing' }
 RSAbstractUMLClassRenderer >> classBoxPadding [
 	^ padding ifNil: [ padding := self defaultClassBoxPadding ]
 ]
@@ -219,7 +226,15 @@ RSAbstractUMLClassRenderer >> renderAssociation: aCollection shape: aRSLine [
 { #category : 'public' }
 RSAbstractUMLClassRenderer >> renderAssociations [
 	self renderAssociation: self modelDescriptor compositions shape: self compositionShape.
-	self renderAssociation: self modelDescriptor aggregations shape: self aggregationShape
+	self renderAssociation: self modelDescriptor aggregations shape: self aggregationShape.
+	self renderAssociation: self modelDescriptor associations shape: self associationShape.
+]
+
+{ #category : 'accessing' }
+RSAbstractUMLClassRenderer >> simpleLineShape [
+	^ RSLine new
+		border: self border;
+		yourself
 ]
 
 { #category : 'hooks' }
