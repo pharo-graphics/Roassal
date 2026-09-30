@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        smalltalk: [ pharo13, pharo14 ]
+        smalltalk: [ pharo14, pharo15 ]
         group: [ Full ]
         tests: [ Roassal ]
         os: [ ubuntu-latest ]
@@ -27,7 +27,7 @@ jobs:
     steps:
         
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.12.1
+        uses: styfle/cancel-workflow-action@0.13.1
         with:
           access_token: ${{ github.token }}
 
@@ -40,7 +40,7 @@ jobs:
       # This will delete roassal and numeric scales and it executes the tests again
       - name: Run pharo Tests
         id: tests
-        uses: tinchodias/PharoTestsAction@v3
+        uses: tinchodias/PharoTestsAction@v4
         with:
           removes-repo: 'Roassal, Numeric'
           baseline: 'Roassal'
