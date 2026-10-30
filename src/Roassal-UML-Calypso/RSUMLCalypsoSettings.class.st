@@ -73,10 +73,10 @@ RSUMLCalypsoSettings class >> methodsLimitUML: aNumber [
 RSUMLCalypsoSettings class >> settingsForCalypsoUMLAnimationInBaseline: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #useAnimationInCalypsoBaseline)
-		parent: #useCalypsoUML;
+		parentName: #useCalypsoUML;
 		label: 'Use animation in calypso baseline';
 		description: 'Enable or disable the animation for the Baseline-Graph';
-		default: true;
+		defaultValue: true;
 		target: self
 ]
 
@@ -84,45 +84,45 @@ RSUMLCalypsoSettings class >> settingsForCalypsoUMLAnimationInBaseline: aBuilder
 RSUMLCalypsoSettings class >> settingsForCalypsoUMLColorsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #CalypsoUMLColors)
-		parent: #useCalypsoUML;
+		parentName: #useCalypsoUML;
 		label: 'UML Colors' ;
 		description: 'All settings concerned with the look''n feel of your system';
 		with: [
 			(aBuilder setting: #lightThemeUMLClassColor)
 				target: self;
 				label: 'Light Theme UML Class color';
-				default: self defaultLightThemeColorUMLClass.
+				defaultValue: self defaultLightThemeColorUMLClass.
 
 			(aBuilder setting: #darkThemeUMLClassColor)
 				target: self;
 				label: 'Dark Theme UML Class color';
-				default: self defaultDarkThemeColorUMLClass	 ]
+				defaultValue: self defaultDarkThemeColorUMLClass	 ]
 ]
 
 { #category : 'settings' }
 RSUMLCalypsoSettings class >> settingsForCalypsoUMLInitialSelectionOn: aBuilder [
 	<systemsettings>
 	(aBuilder pickOne: #initialSelectionClass)
-		parent: #useCalypsoUML;
+		parentName: #useCalypsoUML;
 		label: 'UML initial selection' ;
 		description: 'Selected a strategy when you open a class with the uml';
 		target: self;
 		domainValues: RSInitialSelection allSubclasses;
-		default: RSDancingSelection
+		defaultValue: RSDancingSelection
 ]
 
 { #category : 'settings' }
 RSUMLCalypsoSettings class >> settingsForCalypsoUMLOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #CalypsoUMLValues)
-		parent: #useCalypsoUML;
+		parentName: #useCalypsoUML;
 		label: 'Capypso UML Methods' ;
 		description: 'All settings concerned with the size of variables to show';
 		with: [
 			(aBuilder range: #methodsLimitUML)
 				target: self;
 				label: 'Limit for number of methods to show in UML class';
-				default: 30;
+				defaultValue: 30;
 				range: ( 0 to: 200). ]
 ]
 
@@ -131,8 +131,8 @@ RSUMLCalypsoSettings class >> settingsGroupOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #useCalypsoUML)
 		label: 'Calypso UML';
-		parent: #Calypso;
-		default: true;
+		parentName: #Calypso;
+		defaultValue: true;
 		target: self;
 		description: 'Settings related to the UML within Calypso browser'
 ]
