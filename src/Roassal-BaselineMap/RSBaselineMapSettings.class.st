@@ -36,19 +36,19 @@ RSBaselineMapSettings class >> defaultClassMapBuilder [
 RSBaselineMapSettings class >> settingsClassOn: aBuilder [
 	<systemsettings>
 	(aBuilder pickOne: #classMapBuilder)
-		parent: #baselineMap;
+		parentName: #baselineMap;
 		label: 'Baseline Map';
 		description: 'Choose a class to be default in the inspector and baseline';
 		target: self;
 		domainValues: RSMapBuilder withAllSubclasses;
-		default: self defaultClassMapBuilder
+		defaultValue: self defaultClassMapBuilder
 ]
 
 { #category : 'settings' }
 RSBaselineMapSettings class >> settingsGroupOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #baselineMap)
-		parent: #Calypso;
+		parentName: #Calypso;
 		label: 'Baseline Map';
 		description: 'Used to generate a visual map'
 ]
