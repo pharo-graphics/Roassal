@@ -163,14 +163,14 @@ BaselineOfRoassal >> extraPackagesNames [
 { #category : 'dependencies' }
 BaselineOfRoassal >> geometry: spec [
 	spec baseline: 'Geometry' with: [ 
-		spec repository: 'github://pharo-contributions/Geometry/src' ]
+		spec repository: 'github://pharo-contributions/Geometry:v1.2.1/src' ]
 ]
 
 { #category : 'dependencies' }
 BaselineOfRoassal >> layouts: spec [
 	spec
 		baseline: 'RoassalLayouts'
-		with: [ spec repository: 'github://pharo-graphics/RoassalLayouts:Pharo13/src' ]
+		with: [ spec repository: 'github://pharo-graphics/RoassalLayouts:v1.2.0/src' ]
 ]
 
 { #category : 'dependencies' }
