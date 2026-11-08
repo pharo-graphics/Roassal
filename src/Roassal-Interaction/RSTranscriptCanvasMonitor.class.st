@@ -30,5 +30,5 @@ RSTranscriptCanvasMonitor >> updateShape [
 
 	('{1} - {2} fps' format: {
 			 canvasIdString.
-			 self lastFramePerSecond }) traceCr
+			 self lastFramePerSecond }) traceNewLine
 ]

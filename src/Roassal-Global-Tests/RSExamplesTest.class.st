@@ -79,11 +79,11 @@ RSExamplesTest >> testExamples [
 		displayingProgress: [ :cls | cls asString ]
 		every: 500.
 	withErrors ifNotEmpty: [
-		'>>> Examples with errors: ' traceCr.
+		'>>> Examples with errors: ' traceNewLine.
 		withErrors do: [ :report |
-			report value printString traceCr.
-			report key traceCr.
-			'' traceCr.
+			report value printString traceNewLine.
+			report key traceNewLine.
+			'' traceNewLine.
 			 ] ].
 	withErrors := withErrors collect: [ :each | each value ].
 
