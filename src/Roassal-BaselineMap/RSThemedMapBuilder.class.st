@@ -174,20 +174,19 @@ RSThemedMapBuilder >> shadowFor: box [
 ]
 
 { #category : 'events' }
-RSThemedMapBuilder >> showMenu: evt [
-	| menu newContext tool class |
+RSThemedMapBuilder >> showMenu: anEvent [
 
+	| menu newContext tool class |
 	context ifNil: [ ^ self ].
-	class := evt shape model baselineClass.
-	class ifNil: [ ^ self] .
+	class := anEvent shape model baselineClass.
+	class ifNil: [ ^ self ].
 	newContext := context copy.
 	tool := ClyFullBrowserMorph on: ClyNavigationEnvironment currentImage.
-	tool prepareInitialStateBy: [ :b | b selectClass: class ].
-
+	tool prepareInitialStateBy: [ :browser | browser selectClass: class ].
 	newContext tool: tool.
-		menu := CmdContextMenuActivation
-			buildContextMenuFor: evt canvas morph
-			inContext: newContext.
+	menu := ClyCommandGroupMenuRenderer new
+		        renderTree: (ClyCommandGroupBuilder new buildMenuFor: ClyContextMenuActivation context: newContext pureRoots: newContext commanderCommandClasses)
+		        on: anEvent canvas morph.
 	menu popUpInWorld: self currentWorld
 ]
 
