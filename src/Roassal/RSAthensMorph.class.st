@@ -103,7 +103,7 @@ RSAthensMorph >> drawOn: aCanvas [
 					sourceRect: (0 @ 0 extent: surface extent)
 					rule: 34 ] ]
 		on: Exception
-		do: [ :ex | ex traceCr ]
+		do: [ :ex | ex traceNewLine ]
 	] ensure: [ isDrawing := false ]
 ]
 

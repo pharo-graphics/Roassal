@@ -24,7 +24,7 @@ RSEventsMonitor class >> example [
 	monitor onNewEventDo: [ :evt |
 		evt class trace.
 		' ' trace.
-		evt timeStamp traceCr.
+		evt timeStamp traceNewLine.
 		] for: self.
 	canvas when: RSMouseClick send: #open to: Transcript.
 	^ canvas open
