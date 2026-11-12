@@ -185,7 +185,7 @@ RSThemedMapBuilder >> showMenu: anEvent [
 	tool prepareInitialStateBy: [ :browser | browser selectClass: class ].
 	newContext tool: tool.
 	menu := ClyCommandGroupMenuRenderer new
-		        renderTree: (ClyCommandGroupBuilder new buildMenuFor: ClyContextMenuActivation context: newContext pureRoots: newContext commanderCommandClasses)
+		        renderTree: (ClyCommandGroupBuilder new buildMenuOf: (ClyCommandRegistry default activationsOf: #contextMenu inContext: newContext) context: newContext pureRoots: #(  ))
 		        on: anEvent canvas morph.
 	menu popUpInWorld: self currentWorld
 ]
