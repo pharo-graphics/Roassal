@@ -24,7 +24,7 @@ RSCanvasElement >> addFixedShapeElementFor: aRSShape [
 
 	self addChild:
 		(aRSShape asBlElement
-			addBlocToRoassalEventHandler: elementListener;
+			addBlocToRoassalEventHandler: blocToRoassalListener;
 			yourself)
 ]
 
@@ -41,7 +41,7 @@ RSCanvasElement >> addRegularShapeElementFor: aRSShape [
 
 	cameraElement addChild:
 		(aRSShape asBlElement
-			addBlocToRoassalEventHandler: elementListener;
+			addBlocToRoassalEventHandler: blocToRoassalListener;
 			yourself)
 ]
 
@@ -99,7 +99,7 @@ RSCanvasElement >> initializeWithCanvas: aRSCanvas [
 
 	roassalCanvas := aRSCanvas.
 
-	elementListener := RSBlocEventListener newForCanvas: aRSCanvas.
+	blocToRoassalListener := RSBlocEventListener newForCanvas: aRSCanvas.
 	cameraElement := RSCameraElement newWithCanvas: aRSCanvas.
 
 	self addFixedShapeElements.
@@ -153,7 +153,7 @@ RSCanvasElement >> signalUpdate [
 RSCanvasElement >> subscribeBlocToRoassal [
 
 	self
-		addEventHandler: elementListener;
+		addEventHandler: blocToRoassalListener;
 		addEventHandlerOn: BlElementExtentChangedEvent
 			do: [ :evt | self updateRSCanvasExtent ];
 		addEventHandlerOn: BlElementAddedToSceneGraphEvent 
