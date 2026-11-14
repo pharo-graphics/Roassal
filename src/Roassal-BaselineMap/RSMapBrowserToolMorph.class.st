@@ -12,12 +12,6 @@ Class {
 	#tag : 'UI'
 }
 
-{ #category : 'baselines' }
-RSMapBrowserToolMorph class >> baselineClassActivation [
-	<classAnnotation>
-	^ ClyTabActivationStrategyAnnotation for: ClyClass asCalypsoItemContext
-]
-
 { #category : 'testing' }
 RSMapBrowserToolMorph class >> shouldBeActivatedInContext: aBrowserContext [
 	^ aBrowserContext isClassSelected
