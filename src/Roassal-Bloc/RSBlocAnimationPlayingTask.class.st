@@ -27,10 +27,21 @@ RSBlocAnimationPlayingTask >> initializeWithCanvas: aRSCanvas [
 	roassalCanvas := aRSCanvas
 ]
 
+{ #category : 'testing' }
+RSBlocAnimationPlayingTask >> isSettled [
+
+	^ roassalCanvas hasAnimation not
+]
+
 { #category : 'private - testing' }
 RSBlocAnimationPlayingTask >> requeueTaskAfterExecution [
 
 	^ true
+]
+
+{ #category : 'accessing' }
+RSBlocAnimationPlayingTask >> roassalCanvas [
+	^ roassalCanvas
 ]
 
 { #category : 'api - running' }
