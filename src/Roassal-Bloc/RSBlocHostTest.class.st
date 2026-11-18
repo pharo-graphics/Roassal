@@ -8,13 +8,14 @@ Class {
 
 { #category : 'private' }
 RSBlocHostTest >> formOfOpenedCanvas: aCanvas [
-	"Bloc renders a space only once it is opened in a window, so open it, take the form and wait for the window to close."
+	"Bloc renders a space only once it is opened in a window, so open it, wait until it is settled, take the form and wait for the window to close."
 
 	| space form |
 	aCanvas host createSpace.
 	space := aCanvas host space.
 	space show.
 	self waitUntil: [ space isOpened and: [ space root extent = aCanvas extent ] ].
+	space settle.
 	form := space root asForm.
 	space close.
 	self waitUntil: [ space isOpened not ].
