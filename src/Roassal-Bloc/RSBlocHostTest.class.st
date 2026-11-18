@@ -6,6 +6,21 @@ Class {
 	#tag : 'Tests'
 }
 
+{ #category : 'private' }
+RSBlocHostTest >> formOfOpenedCanvas: aCanvas [
+	"Bloc renders a space only once it is opened in a window, so open it, take the form and wait for the window to close."
+
+	| space form |
+	aCanvas host createSpace.
+	space := aCanvas host space.
+	space show.
+	self waitUntil: [ space isOpened and: [ space root extent = aCanvas extent ] ].
+	form := space root asForm.
+	space close.
+	self waitUntil: [ space isOpened not ].
+	^ form
+]
+
 { #category : 'tests' }
 RSBlocHostTest >> testAddShapeAfterOpen [
 
@@ -14,44 +29,30 @@ RSBlocHostTest >> testAddShapeAfterOpen [
 	canvas extent: 400 @ 300.
 	canvas useBlocHost.
 
-	canvas addShape:
-		(shape1 := RSCircle new
-			color: Color red;
-			position: -25 asPoint;
-			extent: 50 asPoint;
-			yourself).
+	canvas addShape: (shape1 := RSCircle new
+		           color: Color red;
+		           position: -25 @ -25;
+		           extent: 50 @ 50;
+		           yourself).
 
 	"This emulates opening"
-	canvas host canvasElement
-		elementAtShape: shape1
-		ifFound: [ :found | element1 := found ]
-		ifNone: [ self fail ].
+	canvas host canvasElement elementAtShape: shape1 ifFound: [ :found | element1 := found ] ifNone: [ self fail ].
 
 	"Add a shape after open"
-	canvas addShape:
-		(shape2 := RSCircle new
-			color: Color green;
-			position: 25 asPoint;
-			extent: 50 asPoint;
-			yourself).
+	canvas addShape: (shape2 := RSCircle new
+		           color: Color green;
+		           position: 25 @ 25;
+		           extent: 50 @ 50;
+		           yourself).
 	canvas signalUpdate.
 
-	canvas host canvasElement
-		elementAtShape: shape2
-		ifFound: [ :found | element2 := found ]
-		ifNone: [ self fail ].
+	canvas host canvasElement elementAtShape: shape2 ifFound: [ :found | element2 := found ] ifNone: [ self fail ].
 
-	self
-		assert: element2 transformation matrix x - 25
-		equals: element1 transformation matrix x + 25.
+	self assert: element2 transformation matrix x - 25 equals: element1 transformation matrix x + 25.
 
-	form := canvas asForm.
-	self
-		assert: (form colorAt: (canvas extent/2) - 25 asPoint)
-		equals: Color red.
-	self
-		assert: (form colorAt: (canvas extent/2) + 25 asPoint)
-		equals: Color green
+	form := self formOfOpenedCanvas: canvas.
+	self assert: (form colorAt: canvas extent / 2 - (25 @ 25)) equals: Color red.
+	self assert: (form colorAt: canvas extent / 2 + (25 @ 25)) equals: Color green
 ]
 
 { #category : 'tests' }
@@ -63,16 +64,15 @@ RSBlocHostTest >> testAsForm [
 
 	canvas extent: 200 @ 100.
 	canvas color: Color blue.
-	canvas addShape:
-		(RSBox new
-			color: Color red;
-			extent: 20 @ 10;
-			yourself).
-	form := canvas asForm.
+	canvas addShape: (RSBox new
+		 color: Color red;
+		 extent: 20 @ 10;
+		 yourself).
+	form := self formOfOpenedCanvas: canvas.
 
 	self assert: form isForm.
 	self assert: form extent equals: 200 @ 100.
-	self assert: (form colorAt: 1@1) equals: Color blue.
+	self assert: (form colorAt: 1 @ 1) equals: Color blue.
 	self assert: (form colorAt: form extent // 2) equals: Color red
 ]
 
@@ -123,4 +123,16 @@ RSBlocHostTest >> testClick [
 	self
 		assert: (canvasElement canvasPointInBlLocal: positionInRSCanvas)
 		equals: positionInBlSpace - container position
+]
+
+{ #category : 'private' }
+RSBlocHostTest >> waitUntil: aBlock [
+	"Poll aBlock until it answers true, failing the test if that takes longer than about five seconds."
+
+	| attempts |
+	attempts := 0.
+	[ aBlock value or: [ attempts > 500 ] ] whileFalse: [
+		attempts := attempts + 1.
+		(Delay forMilliseconds: 10) wait ].
+	self assert: aBlock value description: 'Timed out waiting for the Bloc space to open or close'
 ]
